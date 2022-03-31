@@ -22,3 +22,5 @@
 ## DB設計
 おかしな点見つかれば随時修正します
 <img width="671" alt="image" src="https://user-images.githubusercontent.com/95999068/161110266-f1ae19e1-a338-4452-aae4-cd7755317b73.png">
+<img width="619" alt="image" src="https://user-images.githubusercontent.com/95999068/161116830-7a332dab-3fa4-405e-b135-fc7eb1c39c42.png">
+
