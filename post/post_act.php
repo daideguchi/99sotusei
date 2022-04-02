@@ -19,8 +19,6 @@ $pdo = connect_to_db();
 $sql = "INSERT INTO posts_table (user_id, title, text, thumbnail, deleted_at, created_at, updated_at) 
     VALUE(:id, :title, :text, :thumbnail, 0, now(),now())";
 
-//   var_dump($kanjou);
-//   exit();
 
     $stmt = connect_to_db()->prepare($sql);
     $stmt->bindValue(':id', $id, PDO::PARAM_STR);

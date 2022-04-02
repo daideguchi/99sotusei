@@ -173,3 +173,4 @@ function post(){
   $posts = connect_to_db()->query($sql);
   return $posts;
 }
+

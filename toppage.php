@@ -51,7 +51,10 @@ $allpostData = getAllpost();
         <?php foreach($allpostData as $post): ?>
             <div style="display: flex;"><img src=./post/<?php echo "{$post["thumbnail"]}" ?> class="img-thumbnail" style="width: 200px;" alt=""> 
             <div>
-            <div><p><b><?php echo h("{$post["title"]}") ?></b></p></div>
+            <div><p><b>
+			<a href='article.php?id=<?php echo "{$post["post_id"]}" ?>'>
+			<?php echo h("{$post["title"]}") ?></a>
+			</b></p></div>
             <div><p><?php echo h("{$post["text"]}")?></p></div>
             </div>
             </div>

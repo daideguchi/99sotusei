@@ -38,7 +38,7 @@ check_session_id();
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form> -->
-      <a href="./background/todo_logout.php">ログアウト</a>
+      <a href="../background/todo_logout.php">ログアウト</a>
     </div>
   </div>
 </nav>
