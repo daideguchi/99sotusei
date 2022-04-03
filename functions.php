@@ -88,8 +88,8 @@ function fileSave($filename, $save_path,$caption,$username){
 //お気に入り登録かついいねの多い順に表示させる３・２８未実装
 function getAllpost(){
 
- $sql = "SELECT * FROM `posts_table` ";
-
+$sql = "SELECT * FROM `users_table` JOIN `posts_table` 
+ON users_table.id = posts_table.user_id";
 
  $allpostData = connect_to_db()->query($sql);
 // var_dump($fileData);

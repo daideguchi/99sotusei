@@ -61,8 +61,11 @@ try {
 </head>
 <body>
 <h1>登録が完了しました</h1>
-        <a href="../toppage.php">トップページへ</a>
-
+  <form action="todo_login_act.php" method="POST">
+<input type="hidden" name="email" value="<?php echo "{$email}" ?>">
+<input type="hidden" name="password" value="<?php echo "{$password}" ?>">
+    <button>トップページへ</button>
+  </form>
     </div>
 </body>
 </html>

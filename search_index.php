@@ -2,8 +2,23 @@
 session_start();
 include("functions.php");
 check_session_id();
-$userdata = userinfo();
-$allpostData = getAllpost();
+
+$pref = $_GET["id"];
+
+$pdo = connect_to_db();
+
+$sql = "SELECT * FROM `users_table` JOIN `posts_table` 
+ON users_table.id = posts_table.user_id 
+WHERE pref = '$pref'";
+$stmt = $pdo->prepare($sql);
+
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+
 
 ?>
 
@@ -13,7 +28,6 @@ $allpostData = getAllpost();
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <!-- <link rel="stylesheet" href="assets/css/main.css" /> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-earthly.css" type="text/css"> -->
 
   </head>
 
@@ -44,10 +58,8 @@ $allpostData = getAllpost();
 <p>※ベータ版のため、リンクは北海道・東京・福岡のみ</p>
 
 <br><br>
-
-
     	<div>
-        <?php foreach($allpostData as $post): ?>
+        <?php foreach($stmt as $post): ?>
             <div style="display: flex;">
             <img src=./post/<?php echo "{$post["thumbnail"]}" ?> class="img-thumbnail" style="width: 200px;" alt=""> 
             <div>

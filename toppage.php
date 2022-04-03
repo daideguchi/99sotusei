@@ -4,6 +4,9 @@ include("functions.php");
 check_session_id();
 $userdata = userinfo();
 $allpostData = getAllpost();
+// $comment_count = comment_count();
+// $count = $comment_count->fetchColumn();
+
 
 
 ?>
@@ -45,15 +48,24 @@ $allpostData = getAllpost();
 </nav>
 
 
+			<!-- Main -->
+				<section id="main" class="container">
 
+					<section class="box special">
+						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+					</section>
+          <br><br>
 
 	<div>
         <?php foreach($allpostData as $post): ?>
             <div style="display: flex;"><img src=./post/<?php echo "{$post["thumbnail"]}" ?> class="img-thumbnail" style="width: 200px;" alt=""> 
             <div>
             <div><p><b>
+
 			<a href='article.php?id=<?php echo "{$post["post_id"]}" ?>'>
 			<?php echo h("{$post["title"]}") ?></a>
+<p><img src="images/pencil.svg" width="20px"><?php echo "{$post["username"]}"  ?></a> | <?php echo "{$post["pref"]}"?> | <?php echo "{$post["city"]}"?> | <?php echo "{$post["department"]}"?><br><br></p>
+
 			</b></p></div>
             <div><p><?php echo h("{$post["text"]}")?></p></div>
             </div>
@@ -67,12 +79,6 @@ $allpostData = getAllpost();
 
 
 
-			<!-- Main -->
-				<section id="main" class="container">
-
-					<section class="box special">
-						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
-					</section>
 
 
 			<!-- Footer -->

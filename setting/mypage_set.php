@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("functions.php");
+include("../functions.php");
 check_session_id();
 
 ?>
@@ -12,49 +12,42 @@ check_session_id();
 
 <head>
  
-    <title>書く</title>
+    <title>設定</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-earthly.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../editer_tool/jquery.cleditor.css" />
-
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../editer_tool/jquery.cleditor.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $("#input").cleditor();
-      });
-    </script>
-
     <body>
-        <div id="top">
-        <h1><u>記事投稿</u></h1>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../mypage.php">マイページ</a>
+            <a class="navbar-brand" href="../toppage.php">トップページ</a>
+            <a class="navbar-brand" href="../search.php">探す</a>
+            <a class="navbar-brand" href="../post/post.php">書く</a>
+
+
+            </div>
         </div>
-        <p>成果事例や取組事例を記入する</p>
+        </nav>
+            <br><br><br>
+        <div id="top">
 
 
-        <form action="post.check.php" method="POST" enctype="multipart/form-data">
+        <form action="mypage_set_act.php" method="POST" enctype="multipart/form-data">
+        <p>自己紹介文</p>
+            <textarea id="input" name="introduction"></textarea>
 
-            <div>タイトル: <input type="text" name="title" style="
-                width: 622px;
-                padding-left: 10px;
-                padding-right: 10px;
-            "></div>
-            <br />
+        <p>トップ画</p>
+            <input name="prof_img" id="uploader1" type="file" accept="image/*">
+            <div id="showPic1"></div>
 
-            <div>本文: </div>
-            <textarea id="input" name="text"></textarea>
-            <p>※現在、リッチテキストだとDB保存できない</p>
-            <br />
-
-            <div>サムネイル画像: </div>
-            <input name="thumbnail" id="uploader" type="file" accept="image/*">
-            <div id="showPic"></div>
+        <p>背景画像</p>
+            <input name="screen_img" id="uploader2" type="file" accept="image/*">
+            <div id="showPic2"></div>
 
             <div>
-                <button>確認画面へ</button>
+                <button>確定</button>
             </div>
 
             <input type="hidden" name="max" value="1048576" />
@@ -62,14 +55,25 @@ check_session_id();
 
 
         <script>
-            $("#uploader").change(function (evt) {
+            $("#uploader1").change(function (evt) {
             let file = evt.target.files;
             let reader = new FileReader();
             let dataUrl = "";
             reader.readAsDataURL(file[0]);
             reader.onload = function () {
                 dataUrl = reader.result;
-                $("#showPic").html("<img src='" + dataUrl + "'>");
+                $("#showPic1").html("<img src='" + dataUrl + "'>");
+            };
+            });
+
+            $("#uploader2").change(function (evt) {
+            let file = evt.target.files;
+            let reader = new FileReader();
+            let dataUrl = "";
+            reader.readAsDataURL(file[0]);
+            reader.onload = function () {
+                dataUrl = reader.result;
+                $("#showPic2").html("<img src='" + dataUrl + "'>");
             };
             });
         </script>

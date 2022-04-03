@@ -6,16 +6,25 @@ $userdata = userinfo();
 $allpostData = getAllpost();
 
 
-// var_dump($_GET);
+// var_dump($comment_count);
 // exit();
 $user_id = $_SESSION["id"];
 $username = $_SESSION["username"];
 $post_id = $_GET["id"];
 
 $pdo = connect_to_db();
-$sql = "SELECT * FROM posts_table WHERE post_id=$post_id";
-$stmt = $pdo->prepare($sql);
 
+
+$sql_comment = "SELECT COUNT(*) FROM comment_table WHERE post_id = $post_id";
+$comment_count = $pdo->query($sql_comment);
+$count = $comment_count->fetchColumn();
+
+
+
+$sql = "SELECT * FROM `users_table` JOIN `posts_table` 
+ON users_table.id = posts_table.user_id 
+WHERE post_id = $post_id;";
+$stmt = $pdo->prepare($sql);
 
 try {
   $status = $stmt->execute();
@@ -28,12 +37,19 @@ foreach($stmt as $article):
     $thumbnail = $article['thumbnail'];
     $title = $article['title'];
     $text = $article['text'];
+    $postuser = $article['username'];
+    $postuser_id = $article['id'];
+    $postuser_pref = $article['pref'];
+    $postuser_city = $article['city'];
+    $postuser_department = $article['department'];
  endforeach;
 
 
 $sql_comment = "SELECT * FROM comment_table WHERE post_id=$post_id";
 $stmt_comment = $pdo->prepare($sql_comment);
 
+// var_dump($stmt_comment);
+// exit();
 
 try {
   $status_comment = $stmt_comment->execute();
@@ -41,7 +57,7 @@ try {
   echo json_encode(["sql error" => "{$e->getMessage()}"]);
   exit();
 }
- 
+
 ?>
 
 
@@ -86,12 +102,15 @@ try {
             <img src=./post/<?php echo "{$thumbnail}"?> style="width:300px" alt="">
             <br>
             <h1><u><?php echo h("{$title}") ?></u></h1>
+            <br><br>投稿者：<a href='userspage.php?id=<?php echo "{$postuser_id}" ?>'>
+            <?php echo h("{$postuser}") ?></a> | <?php echo h("{$postuser_pref}")?> | <?php echo h("{$postuser_city}")?> | <?php echo h("{$postuser_department}")?><br><br>
+
             <?php echo h("{$text}") ?>
 
 
 <br><br><br>            
 <hr>
-<h2><u>コメント(<?php echo "{$comment_count}"?>)</u></h2>
+<h3><u>コメント(<?php echo "{$count}"?>)</u></h3>
 <br>
 
 	<div>

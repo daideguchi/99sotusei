@@ -5,7 +5,21 @@ check_session_id();
 $userdata = userinfo();
 $postData = getpost();
 
+foreach($userdata as $user):
+    $prof_img = $user["prof_img"];
+    $screen_img = $user["screen_img"];
+    $username = $user["username"];
+    $pref = $user["pref"];
+    $city = $user["city"];
+    $introduction = $user["introduction"];
 
+endforeach;
+
+
+// var_dump($prof_img);
+// exit();
+// var_dump($screen_img);
+// exit();
 ?>
 
 
@@ -46,29 +60,38 @@ $postData = getpost();
 
 
     <body>
-        <div class="screen_img"></div>
+        <div class="screen_img">
+            <img class="screen_img" src="./setting/<?php echo "{$screen_img}"?>" alt="">
+        </div>
         <div class="prof_area">
-            <div class="prof_img"></div>
+            <div class="prof_img">
+                <img class="prof_img" src="./setting/<?php echo "{$prof_img}"?>" alt="">
+            </div>
             <div class="prof">
 
                 <div class="container">
                     
-                    <?php foreach($userdata as $user): ?>
+
+
                     <div class="row row-cols-auto">
-                    <div class="col"><?php echo h("{$user["username"]}") ?></div>
+                    <div class="col"><?php echo h("{$username}") ?></div>
                     </div>
                     <div class="w-100"></div>
                     
                     <div class="row row-cols-auto">
-                    <div class="col"><?php echo h("{$user["pref"]}") ?> | <?php echo h("{$user["city"]}") ?> | <?php echo h("{$user["department"]}") ?></div>
-                    <div class="col"><?php echo h("{$user["introduction"]}") ?></div>
-                    <?php endforeach ?>
+                    <div>
+                    <div ><?php echo h("{$pref}") ?> | <?php echo h("$city") ?> | <?php echo h("{$user["department"]}") ?></div>
+                    <br />
+                    <div ><?php echo h("{$introduction}") ?></div>
+                    </div>
+
                     </div>
                 </div>
 
             </div>
 
         </div>
+        <a href="./setting/mypage_set.php">設定</a>
 
 <br><br>
         <?php foreach($postData as $post): ?>
@@ -97,11 +120,14 @@ $postData = getpost();
     <style>
         .screen_img{
             height: 250px;
+            width: 100%;
             background-color: #dcdcdc;
-            background:url(<?php echo "{$screen_img}"?>);
-            background:url(./setting/imeges/screen_img_defult.png);            
+            background:url(./setting/images/screen_img_defult.png);            
             background-position: center;
             background-size: cover;
+            border: solid;
+            text-align: center;
+            object-fit: cover; 
         }
 
       .prof_img {
@@ -109,8 +135,7 @@ $postData = getpost();
         height: 200px;
         border-radius: 50%;
         border: 1px solid #000000;
-        background:url(<?php echo "{$prof_img}"?>);
-        background:url(./setting/imeges/prof_defult.jpeg);   
+        background:url(./setting/images/prof_defult.jpeg);   
         background-position: center;
         background-size: cover;       
       }
