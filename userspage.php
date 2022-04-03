@@ -90,15 +90,20 @@ try {
 
                 <div class="container">
                     
+
+
                     <div class="row row-cols-auto">
                     <div class="col"><?php echo h("{$username}") ?></div>
                     </div>
                     <div class="w-100"></div>
                     
                     <div class="row row-cols-auto">
-                    <div class="col"><?php echo h("{$pref}") ?> | <?php echo h("$city") ?> | <?php echo h("{$user["department"]}") ?></div>
+                    <div>
+                    <div ><?php echo h("{$pref}") ?> | <?php echo h("$city") ?> | <?php echo h("{$user["department"]}") ?></div>
                     <br />
-                    <div class="col"><?php echo h("{$introduction}") ?></div>
+                    <div ><?php echo h("{$introduction}") ?></div>
+                    </div>
+
                     </div>
                 </div>
 
