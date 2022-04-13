@@ -25,6 +25,7 @@ $allpostData = getAllpost();
         <a class="navbar-brand" href="toppage.php">トップページ</a>
         <a class="navbar-brand" href="mypage.php">マイページ</a>
         <a class="navbar-brand" href="./post/post.php">書く</a>
+        <a class="navbar-brand" href="question.php">質問する</a>  
 
         <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

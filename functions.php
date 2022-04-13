@@ -43,6 +43,8 @@ function check_session_id()
     header('Location:index.php');
     exit();
   } else {
+
+   //ログインがちゃんとされていれば一時idを更新する
     session_regenerate_id(true);
     $_SESSION["session_id"] = session_id();
   }
@@ -174,3 +176,16 @@ function post(){
   return $posts;
 }
 
+
+function question_all(){
+
+$sql = "SELECT * FROM `question_table` JOIN `users_table` 
+ON question_table.user_id = users_table.id";
+
+ $question_all = connect_to_db()->query($sql);
+// var_dump($fileData);
+// exit();
+
+ return $question_all;
+
+}

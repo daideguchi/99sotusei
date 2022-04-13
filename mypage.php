@@ -48,6 +48,7 @@ endforeach;
     <a class="navbar-brand" href="toppage.php">トップページ</a>
     <a class="navbar-brand" href="search.php">探す</a>
     <a class="navbar-brand" href="./post/post.php">書く</a>
+    <a class="navbar-brand" href="question.php">質問する</a>  
 
       <!-- <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -92,6 +93,11 @@ endforeach;
 
         </div>
         <a href="./setting/mypage_set.php">設定</a>
+        <p>もらったいいね数：○○</p>
+<p>おくったいいね数：○○</p>
+
+<p>もらったコメント数：●●</p>
+<p>おくったコメント数：●●</p>
 
 <br><br>
         <?php foreach($postData as $post): ?>
@@ -107,8 +113,6 @@ endforeach;
             <br>
         <?php endforeach ?>
         
-
-
 
 
 

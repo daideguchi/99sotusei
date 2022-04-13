@@ -110,7 +110,11 @@ try {
             </div>
 
         </div>
+        <p>もらったいいね数：○○</p>
+<p>おくったいいね数：○○</p>
 
+<p>もらったコメント数：●●</p>
+<p>おくったコメント数：●●</p>
 <br><br>
         <?php foreach($stmt_post as $post): ?>
             <div style="display: flex;"><img src=./post/<?php echo "{$post["thumbnail"]}" ?> class="img-thumbnail" style="width: 200px;" alt=""> 

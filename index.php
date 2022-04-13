@@ -17,7 +17,7 @@
 <body>
 <h1><u>welbe-link</u></h1>
 <h3>自治体ではたらく人のための</h3>
-<h3>モチベーションアップSNS</h3>
+<h3>ナレッジ共有SNS</h3>
   <form action="./background/todo_login_act.php" method="POST">
 <br>
 <br>
