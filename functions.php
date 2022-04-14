@@ -30,7 +30,7 @@ function connect_to_db()
   // $pwd = 'kdJayFzX';
 
   //heroku
-  $dbn = 'mysql:dbname=gsacf_d10_05;charset=utf8mb4;port=3306;host=us-cdbr-east-05.cleardb.net';
+  $dbn = 'mysql:dbname=heroku_216b601f26418e8;charset=utf8mb4;port=3306;host=us-cdbr-east-05.cleardb.net';
   $user = 'b5184191d44d54';
   $pwd = 'cd70a3e5';
 
