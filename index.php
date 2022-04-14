@@ -24,7 +24,7 @@
     <fieldset>
         <legend>サービスへログインする</legend>
         <div>
-            メールアドレス: <input type="email" name="email">
+            ユーザーネーム: <input type="text" name="username">
         </div>
         <div>
             パスワード: <input type="password" name="password">

@@ -10,20 +10,23 @@ session_start();
 
 include("../functions.php");
 $pdo = connect_to_db(); //接続に成功したらpdpにデータが入る
-$email = $_POST["email"];
+// $email = $_POST["email"];
+$username = $_POST["username"];
 $password = $_POST["password"];
 
-// var_dump($email);
+// var_dump($username);
 // var_dump($password);
 // exit();
 // var_dump("あ");
 // exit();
 
 // SQL実行
-$sql = "SELECT * FROM users_table WHERE email=:email AND password=:password AND is_deleted=0";
+// $sql = "SELECT * FROM users_table WHERE email=:email AND password=:password AND is_deleted=0";
+$sql = "SELECT * FROM users_table WHERE username=:username AND password=:password AND is_deleted=0";
 
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':email', $email, PDO::PARAM_STR);
+// $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+$stmt->bindValue(':username', $username, PDO::PARAM_STR);
 $stmt->bindValue(':password', $password, PDO::PARAM_STR);
 
 // var_dump($sql);

@@ -62,7 +62,7 @@ try {
 <body>
 <h1>登録が完了しました</h1>
   <form action="todo_login_act.php" method="POST">
-<input type="hidden" name="email" value="<?php echo "{$email}" ?>">
+<input type="hidden" name="username" value="<?php echo "{$username}" ?>">
 <input type="hidden" name="password" value="<?php echo "{$password}" ?>">
     <button>トップページへ</button>
   </form>
