@@ -28,7 +28,7 @@
     if(!$val){
         break;
     }else{
-        $_SESSION = array();
+        // $_SESSION = array();
         $_SESSION["session_id"] = session_id();
         $_SESSION["is_admin"] = $val["is_admin"];
         $_SESSION["email"] = $val["email"];
