@@ -40,7 +40,6 @@ class API {
                  'pref' => $OutputData['pref'],                 
                  'city' => $OutputData['city'],                 
                  'department' => $OutputData['department'],
-                 'comment' => $OutputData['comment'],
             );
         }
         return json_encode($users);
@@ -63,7 +62,7 @@ class API2 {
                  'pref' => $OutputData['pref'],                 
                  'city' => $OutputData['city'],                 
                  'department' => $OutputData['department'],
-                 'department' => $OutputData['department'],
+                 'comment' => $OutputData['comment'],
             );
         }
         return json_encode($users2);
