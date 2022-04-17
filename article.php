@@ -6,6 +6,8 @@ $userdata = userinfo();
 $allpostData = getAllpost();
 
 
+// var_dump($allpostData);
+// exit();
 // var_dump($comment_count);
 // exit();
 $user_id = $_SESSION["id"];
@@ -58,6 +60,24 @@ try {
   exit();
 }
 
+
+$p_id = ''; //投稿ID
+$dbPostData = ''; //投稿内容
+$dbPostGoodNum = ''; //いいねの数
+
+// get送信がある場合
+if(!empty($_GET['id'])){
+    // 投稿IDのGETパラメータを取得
+    $p_id = $_GET['id'];
+
+    // DBからいいねの数を取得
+    $dbPostGoodNum = count(getGood($p_id));
+
+};
+
+// var_dump($p_id);
+// exit();
+
 ?>
 
 
@@ -108,6 +128,8 @@ try {
             <?php echo h("{$text}") ?>
 
 
+
+            
 <br><br><br>            
 <hr>
 <h3><u>コメント(<?php echo "{$count}"?>)</u></h3>
@@ -142,3 +164,22 @@ try {
 
 </body>
 </html>
+
+<style>
+.btn-good{
+    display: inline-block;
+    padding: 0 8px;
+    cursor: pointer;
+}
+.btn-good:hover{
+    color: #f44336;
+}
+.active{
+    color: #f44336;
+}
+.btn-good .active{
+    color: #f44336;
+}
+
+
+</style>
