@@ -29,8 +29,9 @@ ON users_table.id = posts_table.user_id');
                  'department' => $OutputData['department'],   
                  'title' => $OutputData['title'],                 
                  'text' => $OutputData['text'],                 
-                 'thumbnail' => $OutputData['thumbnail'],                 
-
+                 'thumbnail' => $OutputData['thumbnail'], 
+                 'prof_img' => $OutputData['prof_img'],   
+                 'created_at' => $OutputData['created_at'],                               
             );
         }
         return json_encode($users);

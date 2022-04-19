@@ -37,3 +37,26 @@ https://xd.adobe.com/view/51f2ecb7-05ae-4c3d-9b97-4f249c7417ca-04a1/
 <img width="671" alt="image" src="https://user-images.githubusercontent.com/95999068/161110266-f1ae19e1-a338-4452-aae4-cd7755317b73.png">
 <img width="619" alt="image" src="https://user-images.githubusercontent.com/95999068/161116830-7a332dab-3fa4-405e-b135-fc7eb1c39c42.png">
 
+
+
+apiについて
+
+トップページ
++
+prof_img
+created_at
+like_count
+comment_count
+
+コメント
++
+prof_img
+created_at
+
+イメージカラー
+薄い青
+
+タイトル
+チョークアップ
+chalk up
+
