@@ -4,6 +4,10 @@ include("functions.php");
 check_session_id();
 $userdata = userinfo();
 $allpostData = getAllpost();
+// $topgood = topgood();
+
+// var_dump($topgood);
+// exit();
 // $comment_count = comment_count();
 // $count = $comment_count->fetchColumn();
 
@@ -63,12 +67,15 @@ $allpostData = getAllpost();
             <div>
             <div><p><b>
 
-			<a href='article.php?id=<?php echo "{$post["post_id"]}" ?>'>
+			　<a href='article.php?id=<?php echo "{$post["post_id"]}" ?>'>
 			<?php echo h("{$post["title"]}") ?></a>
-<p><img src="images/pencil.svg" width="20px"><?php echo "{$post["username"]}"  ?></a> | <?php echo "{$post["pref"]}"?> | <?php echo "{$post["city"]}"?> | <?php echo "{$post["department"]}"?><br><br></p>
+<p>　<img src="images/pencil.svg" width="20px"><?php echo "{$post["username"]}"  ?></a> | <?php echo "{$post["pref"]}"?> | <?php echo "{$post["city"]}"?> | <?php echo "{$post["department"]}"?><br></p>
 
+
+
+<p>　いいね♡<?php echo "{$post["good"]}"  ?>　|　コメント<?php echo "{$post["comment"]}"  ?>　|　<?php echo "{$post["p_created_at"]}"  ?></p>
 			</b></p></div>
-            <div><p><?php echo h("{$post["text"]}")?></p></div>
+            <div><p>　<?php echo h("{$post["text"]}")?></p></div>
             </div>
             </div>
             <br>

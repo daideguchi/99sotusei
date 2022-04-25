@@ -2,12 +2,125 @@
 session_start();
 include("functions.php");
 check_session_id();
-
+$my_id = $_SESSION["id"];
 $id = $_GET["id"];
 
-// var_dump($_GET);
+
+// var_dump($id);
+// var_dump($my_id);
 // exit();
+
 $pdo = connect_to_db();
+
+//--------いいねの表示に関するところ------------
+//ユーザーがいいねされた総数を表示
+$sql = 'SELECT SUM((good)) FROM (posts_table) WHERE user_id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$good_total = $stmt->fetch();
+
+if($good_total["SUM((good))"] === NULL){
+    $good_total["SUM((good))"] = 0;
+}
+
+//ユーザーがいいねした総数を表示////
+$sql = 'SELECT COUNT(*) FROM good WHERE id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$good_to_total = $stmt->fetch();
+
+// var_dump($good_to_total);
+// exit();
+
+//--------いいねの表示に関するところ------------
+
+
+// var_dump($good_total["SUM((good))"]);
+// exit();
+
+
+
+//--------コメントの表示に関するところ------------
+
+////////もらったコメント/////////
+$sql = 'SELECT SUM((comment)) FROM (posts_table) WHERE user_id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$comment_total = $stmt->fetch();
+
+if($comment_total["SUM((comment))"] === NULL){
+    $comment_total["SUM((comment))"] = 0;
+}
+
+///////送ったコメント////////
+$sql = 'SELECT COUNT(*) FROM comment_table WHERE user_id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$comment_to_total = $stmt->fetch();
+
+// var_dump($comment_to_total);
+// exit();
+
+// if($comment_to_total["SUM((user_id))"] === NULL){
+//     $comment_to_total["SUM((user_id))"] = 0;
+// }
+//--------コメントの表示に関するところ------------
+
+
+//--------フォローに関するところ--------------------
+$sql = 'SELECT SUM((follow_to)) FROM (users_table) WHERE id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$follow_to_total = $stmt->fetch();
+
+// var_dump($follow_to_total);
+// exit();
+
+$sql = 'SELECT SUM((follow_from)) FROM (users_table) WHERE id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$follow_from_total = $stmt->fetch();
+
+//--------フォローに関するところ---------------------
+
+
+
 $sql_user = "SELECT * FROM users_table WHERE id = $id";
 $stmt_user = $pdo->prepare($sql_user);
 
@@ -109,12 +222,27 @@ try {
 
             </div>
 
-        </div>
-        <p>もらったいいね数：○○</p>
-<p>おくったいいね数：○○</p>
 
-<p>もらったコメント数：●●</p>
-<p>おくったコメント数：●●</p>
+        <p>フォロー：<?php echo "{$follow_to_total["SUM((follow_to))"]}"?></p>
+        <p>フォロワー：<?php echo "{$follow_from_total["SUM((follow_from))"]}"?></p>
+
+
+        </div>
+        <?php 
+        if ($follow_count != 0) {?>
+        <a href="./background/follow_act.php?id=<?php echo "{$id}" ?>&my_id=<?php echo "{$my_id}" ?>">フォローをやめる</a>
+
+        <?php
+        } else {?>
+        <a href="./background/follow_act.php?id=<?php echo "{$id}" ?>&my_id=<?php echo "{$my_id}" ?>">フォローする</a>
+        <?php }?>
+
+
+        <p>もらったいいね数：<?php echo "{$good_total["SUM((good))"]}"?></p>
+        <p>おくったいいね数：<?php echo "{$good_to_total["COUNT(*)"]}"?></p>
+
+        <p>もらったコメント数：<?php echo "{$comment_total["SUM((comment))"]}"?></p>
+        <p>おくったコメント数：<?php echo "{$comment_to_total ["COUNT(*)"]}"?></p>
 <br><br>
         <?php foreach($stmt_post as $post): ?>
             <div style="display: flex;"><img src=./post/<?php echo "{$post["thumbnail"]}" ?> class="img-thumbnail" style="width: 200px;" alt=""> 
@@ -122,6 +250,9 @@ try {
             <div><p><b>
 			<a href='article.php?id=<?php echo "{$post["post_id"]}" ?>'>
 			<?php echo h("{$post["title"]}") ?></a>
+      <br>
+<p>　いいね♡<?php echo "{$post["good"]}"  ?>　|　コメント<?php echo "{$post["comment"]}"  ?>　|　<?php echo "{$post["p_created_at"]}"  ?></p>
+	
 			</b></p></div>
             <div><p><?php echo h("{$post["text"]}")?></p></div>
             </div>

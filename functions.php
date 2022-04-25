@@ -121,9 +121,9 @@ function getErrMsg($key){
 function connect_to_db()
 {
   //localhost
-  // $dbn = 'mysql:dbname=gsacf_d10_05;charset=utf8mb4;port=3306;host=localhost';
-  // $user = 'root';
-  // $pwd = '';
+  $dbn = 'mysql:dbname=gsacf_d10_05;charset=utf8mb4;port=3306;host=localhost';
+  $user = 'root';
+  $pwd = '';
 
   //lolipop
   // $dbn = 'mysql:dbname=LAA1351624-3m2sih;charset=utf8mb4;port=3306;host=mysql153.phy.lolipop.lan';
@@ -131,9 +131,9 @@ function connect_to_db()
   // $pwd = 'kdJayFzX';
 
   //heroku
-  $dbn = 'mysql:dbname=heroku_216b601f26418e8;charset=utf8mb4;port=3306;host=us-cdbr-east-05.cleardb.net';
-  $user = 'b5184191d44d54';
-  $pwd = 'cd70a3e5';
+//   $dbn = 'mysql:dbname=heroku_216b601f26418e8;charset=utf8mb4;port=3306;host=us-cdbr-east-05.cleardb.net';
+//   $user = 'b5184191d44d54';
+//   $pwd = 'cd70a3e5';
   	$options = array(
 		// SQL実行失敗時にはエラーコードのみ設定
 		PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
@@ -371,4 +371,35 @@ function isGood($u_id, $p_id){
 
 function sanitize($str){
 	return htmlspecialchars($str,ENT_QUOTES);
+}
+
+function topgood(){
+$id = $_SESSION["id"];
+
+$sql = "SELECT COUNT(*) FROM good WHERE `user_id`='$id'";
+
+ $topgood = connect_to_db()->query($sql);
+// var_dump($fileData);
+// exit();
+
+ return $topgood;
+}
+
+
+function good_total(){
+$id = $_SESSION["id"];
+
+$sql = "SELECT SUM((good)) FROM (posts_table) WHERE `user_id`=$id";
+$good_total = connect_to_db()->query($sql);
+return $good_total;
+
+}
+
+function comment_total(){
+$id = $_SESSION["id"];
+
+$sql = "SELECT SUM((comment)) FROM (posts_table) WHERE `user_id`=$id";
+$comment_total = connect_to_db()->query($sql);
+return $comment_total;
+
 }

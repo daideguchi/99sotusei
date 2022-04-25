@@ -27,7 +27,29 @@ try {
   exit();
 }
 
+
+$sql_comment = "SELECT COUNT(*) FROM comment_table WHERE post_id = $post_id";
+$comment_count = $pdo->query($sql_comment);
+$c_count = $comment_count->fetchColumn();
+
+// var_dump($c_count);
+// exit();
+
+ $sql = 'UPDATE posts_table SET comment =:c_count WHERE post_id=:post_id';
+ $stmt = $pdo->prepare($sql);
+ $stmt->bindValue(':c_count', $c_count, PDO::PARAM_INT);
+ $stmt->bindValue(':post_id', $post_id, PDO::PARAM_STR);
+ 
+ try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+
 ?>
+
+
 
 <h1>コメントを投稿しました</h1>
     <a href='../article.php?id=<?php echo "{$post_id}" ?>'>

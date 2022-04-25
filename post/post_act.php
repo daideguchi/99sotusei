@@ -16,7 +16,7 @@ $thumbnail = $_POST["thumbnail"];
 // exit();
 
 $pdo = connect_to_db();
-$sql = "INSERT INTO posts_table (user_id, title, text, thumbnail, deleted_at, created_at, updated_at) 
+$sql = "INSERT INTO posts_table (user_id, title, text, thumbnail, deleted_at, p_created_at, p_updated_at) 
     VALUE(:id, :title, :text, :thumbnail, 0, now(),now())";
 
 

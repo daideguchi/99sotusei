@@ -4,6 +4,121 @@ include("functions.php");
 check_session_id();
 $userdata = userinfo();
 $postData = getpost();
+$good_total = good_total();
+$id = $_SESSION["id"];
+
+
+//   $status = $stmt->execute();
+  $good_total = $good_total->fetch();
+
+// var_dump($good_total);
+if($good_total["SUM((good))"] === NULL){
+    $good_total["SUM((good))"] = 0;
+}
+// var_dump($good_total["SUM((good))"]);
+// exit();
+
+
+$pdo = connect_to_db();
+
+
+
+
+//ユーザーがいいねした総数を表示////
+$sql = 'SELECT COUNT(*) FROM good WHERE id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$good_to_total = $stmt->fetch();
+
+// var_dump($good_to_total);
+// exit();
+
+//--------いいねの表示に関するところ------------
+
+
+
+
+////////もらったコメント/////////
+$sql = 'SELECT SUM((comment)) FROM (posts_table) WHERE user_id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$comment_total = $stmt->fetch();
+
+if($comment_total["SUM((comment))"] === NULL){
+    $comment_total["SUM((comment))"] = 0;
+}
+
+///////送ったコメント////////
+$sql = 'SELECT COUNT(*) FROM comment_table WHERE user_id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$comment_to_total = $stmt->fetch();
+
+// var_dump($comment_to_total);
+// exit();
+
+// if($comment_to_total["SUM((user_id))"] === NULL){
+//     $comment_to_total["SUM((user_id))"] = 0;
+// }
+//--------コメントの表示に関するところ------------
+
+
+
+
+
+//--------フォローに関するところ--------------------
+$sql = 'SELECT SUM((follow_to)) FROM (users_table) WHERE id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$follow_to_total = $stmt->fetch();
+
+// var_dump($follow_to_total);
+// exit();
+
+$sql = 'SELECT SUM((follow_from)) FROM (users_table) WHERE id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$follow_from_total = $stmt->fetch();
+
+//--------フォローに関するところ---------------------
+
+
+
+
+
+
+
+
 
 foreach($userdata as $user):
     $prof_img = $user["prof_img"];
@@ -90,14 +205,17 @@ endforeach;
                 </div>
 
             </div>
+        <p>フォロー：<?php echo "{$follow_to_total["SUM((follow_to))"]}"?></p>
+        <p>フォロワー：<?php echo "{$follow_from_total["SUM((follow_from))"]}"?></p>
+
 
         </div>
         <a href="./setting/mypage_set.php">設定</a>
-        <p>もらったいいね数：○○</p>
-<p>おくったいいね数：○○</p>
+        <p>もらったいいね数：<?php echo "{$good_total["SUM((good))"]}"?></p>
+        <p>おくったいいね数：<?php echo "{$good_to_total["COUNT(*)"]}"?></p>
 
-<p>もらったコメント数：●●</p>
-<p>おくったコメント数：●●</p>
+        <p>もらったコメント数：<?php echo "{$comment_total["SUM((comment))"]}"?></p>
+        <p>おくったコメント数：<?php echo "{$comment_to_total ["COUNT(*)"]}"?></p>
 
 <br><br>
         <?php foreach($postData as $post): ?>
@@ -106,6 +224,8 @@ endforeach;
             <div><p><b>
 			<a href='article.php?id=<?php echo "{$post["post_id"]}" ?>'>
 			<?php echo h("{$post["title"]}") ?></a>
+            <br>
+            <p>　いいね♡<?php echo "{$post["good"]}"  ?>　|　コメント<?php echo "{$post["comment"]}"  ?>　|　<?php echo "{$post["p_created_at"]}"  ?></p>
 			</b></p></div>
             <div><p><?php echo h("{$post["text"]}")?></p></div>
             </div>

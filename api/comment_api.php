@@ -35,11 +35,13 @@ class API {
         $data->execute();
         while($OutputData = $data->fetch(PDO::FETCH_ASSOC)){
             $users["投稿記事"] = array(
-                 'prof_img' => $OutputData['prof_img'],                 
                  'username' => $OutputData['username'],                 
                  'pref' => $OutputData['pref'],                 
                  'city' => $OutputData['city'],                 
                  'department' => $OutputData['department'],
+                 'title' => $OutputData['title'],                 
+                 'text' => $OutputData['text'],                 
+                 'thumbnail' => $OutputData['thumbnail'],  
             );
         }
         return json_encode($users);
@@ -55,9 +57,7 @@ class API2 {
         $data2->execute();
         while($OutputData = $data2->fetch(PDO::FETCH_ASSOC)){
             $users2["コメント"] = array(
-                 'title' => $OutputData['title'],                 
-                 'text' => $OutputData['text'],                 
-                 'thumbnail' => $OutputData['thumbnail'],                    
+                 'prof_img' => $OutputData['prof_img'],                                   
                  'username' => $OutputData['username'],
                  'pref' => $OutputData['pref'],                 
                  'city' => $OutputData['city'],                 
