@@ -30,7 +30,7 @@ if($good_total["SUM((good))"] === NULL){
 }
 
 //ユーザーがいいねした総数を表示////
-$sql = 'SELECT COUNT(*) FROM good WHERE id=:id';
+$sql = 'SELECT COUNT(*) FROM good WHERE session_user_id=:id';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':id', $id, PDO::PARAM_STR);
 try {
@@ -237,12 +237,16 @@ try {
         <a href="./background/follow_act.php?id=<?php echo "{$id}" ?>&my_id=<?php echo "{$my_id}" ?>">フォローする</a>
         <?php }?>
 
-
+<p>活動記録</p>
         <p>もらったいいね数：<?php echo "{$good_total["SUM((good))"]}"?></p>
         <p>おくったいいね数：<?php echo "{$good_to_total["COUNT(*)"]}"?></p>
 
         <p>もらったコメント数：<?php echo "{$comment_total["SUM((comment))"]}"?></p>
         <p>おくったコメント数：<?php echo "{$comment_to_total ["COUNT(*)"]}"?></p>
+
+        <p>質問に答えた数：●●</p>
+        <p>質問に答えてもらった数：●●</p>
+   
 <br><br>
         <?php foreach($stmt_post as $post): ?>
             <div style="display: flex;"><img src=./post/<?php echo "{$post["thumbnail"]}" ?> class="img-thumbnail" style="width: 200px;" alt=""> 

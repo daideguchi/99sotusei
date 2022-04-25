@@ -25,7 +25,7 @@ $pdo = connect_to_db();
 
 
 //ユーザーがいいねした総数を表示////
-$sql = 'SELECT COUNT(*) FROM good WHERE id=:id';
+$sql = 'SELECT COUNT(*) FROM good WHERE session_user_id=:id';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':id', $id, PDO::PARAM_STR);
 try {
@@ -211,11 +211,15 @@ endforeach;
 
         </div>
         <a href="./setting/mypage_set.php">設定</a>
+        <p>活動記録</p>
         <p>もらったいいね数：<?php echo "{$good_total["SUM((good))"]}"?></p>
         <p>おくったいいね数：<?php echo "{$good_to_total["COUNT(*)"]}"?></p>
 
         <p>もらったコメント数：<?php echo "{$comment_total["SUM((comment))"]}"?></p>
         <p>おくったコメント数：<?php echo "{$comment_to_total ["COUNT(*)"]}"?></p>
+
+        <p>質問に答えた数：●●</p>
+        <p>質問に答えてもらった数：●●</p>
 
 <br><br>
         <?php foreach($postData as $post): ?>
