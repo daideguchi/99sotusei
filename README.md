@@ -87,8 +87,14 @@ article.php
 マイページ
 mypage.php
 
+ユーザーページ(他の人のページ)
+userspage.php
+
 質問する
 question.php
 
 質問の記事
 question_article.php
+
+●追加を予定している機能
+→地図をマイページとユーザーページに挿入する
