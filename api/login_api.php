@@ -2,14 +2,38 @@
 // データ受け取り
 // var_dump($_POST);
 // exit();
-session_start();
+// session_start();
+
 
 // DB接続
 // var_dump($_POST);
 // exit();
 
 include("../functions.php");
+// require_once __DIR__ . '/config.php';
+
 $pdo = connect_to_db(); //接続に成功したらpdpにデータが入る
+
+
+        $users = array();
+        $data = $pdo->prepare('SELECT * FROM users_table ORDER BY id');
+        $data->execute();
+        while($OutputData = $data->fetch(PDO::FETCH_ASSOC)){
+            $users = array(
+                 'id' => $OutputData['id'],
+                 'username' => $OutputData['username'],
+                 'email' => $OutputData['email'],
+                 'password' => $OutputData['password'],
+
+            );
+        }
+
+        // var_dump($users);
+        // exit();
+
+        return json_encode($users);
+
+
 // $email = $_POST["email"];
 $username = $_POST["username"];
 $password = $_POST["password"];
@@ -49,22 +73,24 @@ if(!$val){
     echo"false";
     exit();
 }else{
-    $users = array();
-    $_SESSION["session_id"] = session_id();
-    $_SESSION["is_admin"] = $val["is_admin"];
-    $_SESSION["email"] = $val["email"];
-    $_SESSION["username"] = $val["username"];
-    $_SESSION["id"] = $val["id"];
+    // $users = array();
+    // $_SESSION["session_id"] = session_id();
+    // $_SESSION["is_admin"] = $val["is_admin"];
+    // $_SESSION["email"] = $val["email"];
+    // $_SESSION["username"] = $val["username"];
+    // $_SESSION["id"] = $val["id"];
  
 
-    $users = array(
-        'session_id' => session_id(),
-        'username' => $val['username'],
-        'email' => $val["email"],
-        'password' => $val['password'],
+    // $users = array(
+    //     'session_id' => session_id(),
+    //     'username' => $val['username'],
+    //     'email' => $val["email"],
+    //     'password' => $val['password'],
 
-    );
+    // );
     
+
+
 
     echo "true";
 
@@ -78,4 +104,7 @@ if(!$val){
     // exit();
 }
 
+$API = new API;
 header('Conetent-Type: application/json');
+echo $API ->Select();
+

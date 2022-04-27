@@ -57,7 +57,7 @@ $allpostData = getAllpost();
 				<section id="main" class="container">
 
 					<section class="box special">
-						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+						<span class="image featured"><img id="top_img" src="images/IMG_5509.JPG" alt="" /></span>
 					</section>
           <br><br>
 
@@ -101,3 +101,13 @@ $allpostData = getAllpost();
 
 	</body>
 </html>
+
+<style>
+ #top_img{
+   height:400px;
+   text-align: center;
+ }
+
+
+
+</style>

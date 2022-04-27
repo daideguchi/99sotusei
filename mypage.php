@@ -193,8 +193,9 @@ endforeach;
 			<!-- Header -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
+    
+    <a class="navbar-brand" href="toppage.php"><img id="nav_l" src="images/IMG_5507.PNG" alt=""></a>
     <a class="navbar-brand" href="#"><u><b>マイページ</b></u></a>
-    <a class="navbar-brand" href="toppage.php">トップページ</a>
     <a class="navbar-brand" href="search.php">探す</a>
     <a class="navbar-brand" href="./post/post.php">書く</a>
     <a class="navbar-brand" href="question.php">質問する</a>  
@@ -210,9 +211,11 @@ endforeach;
 
 
     <body>
+
         <div class="screen_img">
             <img class="screen_img" src="./setting/<?php echo "{$screen_img}"?>" alt="">
         </div>
+        <br>
         <div class="prof_area">
             <div class="prof_img">
                 <img class="prof_img" src="./setting/<?php echo "{$prof_img}"?>" alt="">
@@ -373,5 +376,9 @@ var map = new google.maps.Map(document.getElementById('map'), Options);
         html { height: 100% }
         body { height: 100% }
         #map { height: 100%; width: 100%}
+
+        #nav_l{
+            height:50px;
+        }
 
     </style>
