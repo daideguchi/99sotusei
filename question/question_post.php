@@ -21,11 +21,11 @@ check_session_id();
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="../editer_tool/jquery.cleditor.min.js"></script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
       $(document).ready(function () {
         $("#input").cleditor();
       });
-    </script>
+    </script> -->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -60,7 +60,7 @@ check_session_id();
 
             <div>本文: </div>
             <textarea id="input" name="question"></textarea>
-            <p>※現在、リッチテキストだとDB保存できない</p>
+            <!-- <p>※現在、リッチテキストだとDB保存できない</p> -->
             <br />
 
             <!-- <div>サムネイル画像: </div>
@@ -68,10 +68,12 @@ check_session_id();
             <div id="showPic"></div> -->
 
             <div>
-                <button>確認画面へ</button>
+                <button>投稿</button>
             </div>
 
          </form>
+         <br><br>
+         <a href="../question.php">戻る</a>
 
 
     </body>

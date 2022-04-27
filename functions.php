@@ -130,7 +130,7 @@ function connect_to_db()
   // $user = 'LAA1351624';
   // $pwd = 'kdJayFzX';
 
-  //heroku
+//   heroku
   $dbn = 'mysql:dbname=heroku_216b601f26418e8;charset=utf8mb4;port=3306;host=us-cdbr-east-05.cleardb.net';
   $user = 'b5184191d44d54';
   $pwd = 'cd70a3e5';
@@ -403,3 +403,17 @@ $comment_total = connect_to_db()->query($sql);
 return $comment_total;
 
 }
+
+//質問したトータル数
+function question_total(){
+$id = $_SESSION["id"];
+
+$sql = "SELECT COUNT(*) FROM question_table WHERE `user_id`='$id'";
+
+ $question_total = connect_to_db()->query($sql);
+// var_dump($fileData);
+// exit();
+
+ return $question_total;
+}
+

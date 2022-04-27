@@ -48,6 +48,7 @@ foreach($stmt as $article):
     $quesuser_pref = $article['pref'];
     $quesuser_city = $article['city'];
     $quesuser_department = $article['department'];
+    $ok = $article['ok'];
  endforeach;
 
 
@@ -56,33 +57,17 @@ foreach($stmt as $article):
 $sql_answer = "SELECT * FROM answer_table WHERE ques_id=$ques_id";
 $stmt_answer = $pdo->prepare($sql_answer);
 
-// var_dump($stmt_comment);
+// var_dump($stmt_answer);
 // exit();
 
 try {
-  $status_comment = $stmt_comment->execute();
+  $status_answer = $stmt_answer->execute();
 } catch (PDOException $e) {
   echo json_encode(["sql error" => "{$e->getMessage()}"]);
   exit();
 }
 
 
-$p_id = ''; //投稿ID
-$dbPostData = ''; //投稿内容
-$dbPostGoodNum = ''; //いいねの数
-
-// get送信がある場合
-if(!empty($_GET['id'])){
-    // 投稿IDのGETパラメータを取得
-    $p_id = $_GET['id'];
-
-    // DBからいいねの数を取得
-    $dbPostGoodNum = count(getGood($p_id));
-
-};
-
-// var_dump($p_id);
-// exit();
 
 ?>
 
@@ -126,7 +111,26 @@ if(!empty($_GET['id'])){
                         </nav>
                     </div>
                 </div>
-            
+
+            <?php if ($ok != 0) {?>
+                <p>解決ずみ</p>
+                <?php
+            } else {?>
+                <p>未解決</p>
+                <?php }?>
+
+        <?php 
+        if ($user_id === $_SESSION["id"]) {?>
+            <?php if ($ok != 0) {?>
+                <a href="./background/answer_act.php?id=<?php echo "{$ques_id}" ?>">未解決にする</a>
+
+                <?php
+            } else {?>
+                <a href="./background/answer_act.php?id=<?php echo "{$ques_id}" ?>">解決済みにする</a>
+            <?php }?>
+        <?php }?>
+
+
             <br>
             <h1><u><?php echo h("{$ques_title}") ?></u></h1>
             <br><br>投稿者：<a href='userspage.php?id=<?php echo "{$quesuser_id}" ?>'>
@@ -160,12 +164,13 @@ if(!empty($_GET['id'])){
 
 
 <h3>回答する</h3>
-<form action="./background/todo_comment.php" method="POST">
-  <textarea name="comment" cols="80" rows="5"></textarea>
+<form action="./background/todo_answer.php" method="POST">
+  <textarea name="answer" cols="80" rows="5"></textarea>
 <br>
-<input type="hidden" name="post_id" value="<?php echo "{$ques_id}" ?>">
+<input type="hidden" name="ques_id" value="<?php echo "{$ques_id}" ?>">
 <input type="hidden" name="user_id" value="<?php echo "{$user_id}" ?>">
 <input type="hidden" name="username" value="<?php echo "{$username}" ?>">
+
 <button type="submit" class="btn btn-primary">送信</button> 
 </form>
 

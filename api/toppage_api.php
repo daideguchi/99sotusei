@@ -22,7 +22,8 @@ class API {
 ON users_table.id = posts_table.user_id');
         $data->execute();
         while($OutputData = $data->fetch(PDO::FETCH_ASSOC)){
-            $users[$OutputData['id']] = array(
+            $users = array(
+                 'user_id' => $OutputData['id'],
                  'username' => $OutputData['username'],
                  'pref' => $OutputData['pref'],                 
                  'city' => $OutputData['city'],                 

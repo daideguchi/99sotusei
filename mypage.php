@@ -5,6 +5,8 @@ check_session_id();
 $userdata = userinfo();
 $postData = getpost();
 $good_total = good_total();
+$question_total = question_total();
+
 $id = $_SESSION["id"];
 
 
@@ -71,6 +73,38 @@ try {
   exit();
 }
 $comment_to_total = $stmt->fetch();
+
+
+////////////////////////////////////////////////////////////////
+
+///////送った回答////////
+$sql = 'SELECT COUNT(*) FROM answer_table WHERE user_id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$answer_to_total = $stmt->fetch();
+
+////////もらった回答/////////
+$sql = 'SELECT SUM((answer)) FROM (question_table) WHERE user_id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$answer_total = $stmt->fetch();
+
+if($answer_total["SUM((answer))"] === NULL){
+    $answer_total["SUM((answer))"] = 0;
+}
+////////////////////////////////////
 
 // var_dump($comment_to_total);
 // exit();
@@ -211,15 +245,22 @@ endforeach;
 
         </div>
         <a href="./setting/mypage_set.php">設定</a>
-        <p>活動記録</p>
+
+
+        <p>活動記録トータルポイント：</p>
         <p>もらったいいね数：<?php echo "{$good_total["SUM((good))"]}"?></p>
         <p>おくったいいね数：<?php echo "{$good_to_total["COUNT(*)"]}"?></p>
 
         <p>もらったコメント数：<?php echo "{$comment_total["SUM((comment))"]}"?></p>
         <p>おくったコメント数：<?php echo "{$comment_to_total ["COUNT(*)"]}"?></p>
 
-        <p>質問に答えた数：●●</p>
-        <p>質問に答えてもらった数：●●</p>
+        <p>質問に答えた数：<?php echo "{$answer_to_total ["COUNT(*)"]}"?></p>
+        <p>質問に答えてもらった数：<?php echo "{$answer_total ["SUM((answer))"]}"?></p>
+   
+
+        <div id="sample"></div>
+
+
 
 <br><br>
         <?php foreach($postData as $post): ?>
@@ -229,7 +270,7 @@ endforeach;
 			<a href='article.php?id=<?php echo "{$post["post_id"]}" ?>'>
 			<?php echo h("{$post["title"]}") ?></a>
             <br>
-            <p>　いいね♡<?php echo "{$post["good"]}"  ?>　|　コメント<?php echo "{$post["comment"]}"  ?>　|　<?php echo "{$post["p_created_at"]}"  ?></p>
+            <p>　いいね♡<?php echo "{$post["good"]}"  ?>　|　コメント<?php echo "{$post["comment"]}"  ?>　|　<?php echo "{$post["p_created_at"]}"  ?><a href='./background/todo_delete.php?id=<?php echo "{$post["post_id"]}" ?>'>(削除する)</a></p>
 			</b></p></div>
             <div><p><?php echo h("{$post["text"]}")?></p></div>
             </div>
@@ -237,10 +278,28 @@ endforeach;
             <br>
         <?php endforeach ?>
         
+<!-- 
+<script src="./sample.js"></script>
+  <script src="//maps.googleapis.com/maps/api/js?key={AIzaSyBAV-z7GyTMzJOheQmN5g1T9KD3QC11ym0}&callback=initMap" async></script>
+ 
+   -->
+<script src="http://maps.google.com/maps/api/js?key={AIzaSyBAV-z7GyTMzJOheQmN5g1T9KD3QC11ym0}&language=ja"></script>
 
 
 
-    </body>
+<div id="map"></div>
+
+<script>
+var MyLatLng = new google.maps.LatLng(35.6811673, 139.7670516);
+var Options = {
+ zoom: 15,      //地図の縮尺値
+ center: MyLatLng,    //地図の中心座標
+ mapTypeId: 'roadmap'   //地図の種類
+};
+var map = new google.maps.Map(document.getElementById('map'), Options);
+</script>
+
+</body>
 
 </html>
 
@@ -304,5 +363,15 @@ endforeach;
             width: 30%;
         }
 
+
+        #sample {
+            width: 700px;
+            height: 400px;
+        }
+
+
+        html { height: 100% }
+        body { height: 100% }
+        #map { height: 100%; width: 100%}
 
     </style>

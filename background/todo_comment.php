@@ -27,7 +27,8 @@ try {
   exit();
 }
 
-
+// var_dump($post_id);
+// exit();
 $sql_comment = "SELECT COUNT(*) FROM comment_table WHERE post_id = $post_id";
 $comment_count = $pdo->query($sql_comment);
 $c_count = $comment_count->fetchColumn();

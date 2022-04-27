@@ -3,8 +3,17 @@ session_start();
 include("functions.php");
 check_session_id();
 $my_id = $_SESSION["id"];
+$session_id = $_SESSION["id"];
 $id = $_GET["id"];
 
+// var_dump($session_id);
+// var_dump($id);
+// exit();
+
+if("$session_id" === $id){
+  header("Location:mypage.php");
+exit();
+}
 
 // var_dump($id);
 // var_dump($my_id);
@@ -88,7 +97,7 @@ $comment_to_total = $stmt->fetch();
 // if($comment_to_total["SUM((user_id))"] === NULL){
 //     $comment_to_total["SUM((user_id))"] = 0;
 // }
-//--------コメントの表示に関するところ------------
+///////////////////////////////////////////////////
 
 
 //--------フォローに関するところ--------------------
@@ -117,9 +126,37 @@ try {
 }
 $follow_from_total = $stmt->fetch();
 
-//--------フォローに関するところ---------------------
+///////////////////////////////////////////////////
 
 
+///////送った回答////////
+$sql = 'SELECT COUNT(*) FROM answer_table WHERE user_id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$answer_to_total = $stmt->fetch();
+
+////////もらった回答/////////
+$sql = 'SELECT SUM((answer)) FROM (question_table) WHERE user_id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$answer_total = $stmt->fetch();
+
+if($answer_total["SUM((answer))"] === NULL){
+    $answer_total["SUM((answer))"] = 0;
+}
+////////////////////////////////////
 
 $sql_user = "SELECT * FROM users_table WHERE id = $id";
 $stmt_user = $pdo->prepare($sql_user);
@@ -237,15 +274,15 @@ try {
         <a href="./background/follow_act.php?id=<?php echo "{$id}" ?>&my_id=<?php echo "{$my_id}" ?>">フォローする</a>
         <?php }?>
 
-<p>活動記録</p>
+<p>活動記録：トータルポイント</p>
         <p>もらったいいね数：<?php echo "{$good_total["SUM((good))"]}"?></p>
         <p>おくったいいね数：<?php echo "{$good_to_total["COUNT(*)"]}"?></p>
 
         <p>もらったコメント数：<?php echo "{$comment_total["SUM((comment))"]}"?></p>
         <p>おくったコメント数：<?php echo "{$comment_to_total ["COUNT(*)"]}"?></p>
 
-        <p>質問に答えた数：●●</p>
-        <p>質問に答えてもらった数：●●</p>
+        <p>質問に答えた数：<?php echo "{$answer_to_total ["COUNT(*)"]}"?></p>
+        <p>質問に答えてもらった数：<?php echo "{$answer_total ["SUM((answer))"]}"?></p>
    
 <br><br>
         <?php foreach($stmt_post as $post): ?>

@@ -61,6 +61,13 @@ $question_all = question_all();
         <?php foreach($question_all as $question): ?>
 
 
+        <?php 
+          if ($question["ok"] === 0) {?>
+              <p>未解決</p>
+            <?php } else {?>
+              <p>解決ずみ</p> 
+           <?php }?>
+
 			<a href='question_article.php?id=<?php echo "{$question["ques_id"]}" ?>'>
 			<?php echo h("{$question["ques_title"]}") ?></a>
 <p><img src="images/pencil.svg" width="20px"><?php echo "{$question["username"]}"  ?></a> | <?php echo "{$question["pref"]}"?> | <?php echo "{$question["city"]}"?> | <?php echo "{$question["department"]}"?><br><br></p>

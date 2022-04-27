@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("functions.php");
+include("../functions.php");
 check_session_id();
 
 // var_dump($_GET);
@@ -12,7 +12,7 @@ $pdo = connect_to_db();
 
 // $sql = "DELETE FROM todo_table WHERE id=:id";
 //WHEREでどのレコードを消すかidで指定しないと全て消えてしまうので要注意
-$sql = 'DELETE FROM file_table WHERE id=:id';
+$sql = 'DELETE FROM posts_table WHERE post_id=:id';
 // $sql = 'UPDATE todo_table SET is_deleted = 1,cnt=0;updated_at =now() WHERE id=:id';
 
 $stmt = $pdo->prepare($sql);
@@ -25,5 +25,5 @@ try {
   exit();
 }
 
-header("Location:mypage.php");
+header("Location:../mypage.php");
 exit();
