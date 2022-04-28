@@ -319,8 +319,8 @@ $param_json = json_encode($param); //JSONエンコード
    
 
 <!-- 地図/////////////////////////////////////////////////////////////////////// -->
-
-<p><?php echo "{$city}"?></p>
+<br>
+<p>【<?php echo "{$city}"?>】</p>
  <div id="gmap" style="height:400px;width:600px"></div> <!-- 地図を表示する領域 -->
   
 <script>
