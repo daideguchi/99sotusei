@@ -6,7 +6,7 @@ check_session_id();
 $question_all = question_all();
 // $comment_count = comment_count();
 // $count = $comment_count->fetchColumn();
-
+// $question_all = $pdo->prepare($question_all);
 // var_dump($question_all);
 // exit;
 
@@ -16,7 +16,6 @@ $question_all = question_all();
 // exit();
 // var_dump($comment_count);
 // exit();
-$user_id = $_SESSION["id"];
 $username = $_SESSION["username"];
 $ques_id = $_GET["id"];
 
@@ -40,7 +39,11 @@ try {
   exit();
 }
 
+
+
 foreach($stmt as $article): 
+// //   var_dump($article);
+// exit();
     $ques_title = $article['ques_title'];
     $question = $article['question'];
     $quesuser = $article['username'];
@@ -51,8 +54,8 @@ foreach($stmt as $article):
     $ok = $article['ok'];
  endforeach;
 
-var_dump($ok);
-exit();
+// var_dump($ok);
+// exit();
 
 //回答を表示するための準備
 $sql_answer = "SELECT * FROM answer_table WHERE ques_id=$ques_id";
