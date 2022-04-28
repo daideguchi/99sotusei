@@ -326,11 +326,11 @@ $param_json = json_encode($param); //JSONエンコード
  <div id="gmap" style="height:400px;width:600px"></div> <!-- 地図を表示する領域 -->
   
 <script>
-
-    // console.log(a);
-function initMap() {
    var param = JSON.parse('<?php echo $param_json; ?>'); //JSONデコード
     a = param.住所
+    // console.log(a);
+function initMap() {
+
   //地図を表示する領域の div 要素のオブジェクトを変数に代入
   var target = document.getElementById('gmap');  
   //HTMLに記載されている住所の取得

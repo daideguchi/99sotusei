@@ -243,6 +243,8 @@ $param_json = json_encode($param); //JSONエンコード
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/features/">
      <!-- Bootstrap core CSS -->
  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhiWaH78BNWwF9BsDbPtyUzNVOhLrFjJQ&callback=initMap" async defer></script><!-- YOUR_API_KEYの部分は取得した APIキーで置き換えます -->  
+
 
 <style>
   .bd-placeholder-img {
@@ -386,7 +388,6 @@ function initMap() {
   });
 }
 </script> 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhiWaH78BNWwF9BsDbPtyUzNVOhLrFjJQ&callback=initMap" async defer></script><!-- YOUR_API_KEYの部分は取得した APIキーで置き換えます -->  
 
 
 <!-- /////////////////////////////////////////////////////////////////////// -->

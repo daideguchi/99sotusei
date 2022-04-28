@@ -79,7 +79,7 @@ $allpostData = getAllpost();
           <area shape="rect" coords="351,366,392,385" href="search_index.php?id=東京都" name= "東京" alt="東京" />
           <area shape="rect" coords="91,316,120,344" href="search_index.php?id=福岡県" name="福岡" alt="福岡" />
         </map>
-      <p>※現在、リンクは北海道・東京・福岡のみ</p>
+      <p>※ベータ版のため、リンクは北海道・東京・福岡のみ</p>
 
       <br><br>
 

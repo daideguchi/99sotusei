@@ -7,7 +7,7 @@
 
 function connect_to_db()
 {
-  //localhost
+//   localhost
 //   $dbn = 'mysql:dbname=gsacf_d10_05;charset=utf8mb4;port=3306;host=localhost';
 //   $user = 'root';
 //   $pwd = '';
