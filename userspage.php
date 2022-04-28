@@ -264,7 +264,7 @@ $param_json = json_encode($param); //JSONエンコード
 <!-- Custom styles for this template -->
 <link href="headers.css" rel="stylesheet">
 <link href="features.css" rel="stylesheet">
-    <link rel="icon" href="favicon.ico">
+  <link rel="icon" href="images/favicon.ico">
 
 
 	</head>

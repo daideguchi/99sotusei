@@ -51,7 +51,7 @@ $question_all = question_all();
 
 <!-- Custom styles for this template -->
 <link href="headers.css" rel="stylesheet">
-    <link rel="icon" href="favicon.ico">
+  <link rel="icon" href="images/favicon.ico">
 
 
 
