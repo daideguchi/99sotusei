@@ -22,6 +22,32 @@ exit();
 
 $pdo = connect_to_db();
 
+///////地図の住所を取得////////
+$sql = 'SELECT * FROM users_table WHERE id=:id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$city = $stmt->fetch();
+$city = $city["city"];
+
+// var_dump($city);
+// exit();
+
+$param = array(
+    "住所" => $city,
+);
+$param_json = json_encode($param); //JSONエンコード
+
+//////////////////////////////////////////////////////
+
+
+
+
 //--------いいねの表示に関するところ------------
 //ユーザーがいいねされた総数を表示
 $sql = 'SELECT SUM((good)) FROM (posts_table) WHERE user_id=:id';
@@ -224,10 +250,6 @@ try {
   exit();
 }
 
-$param = array(
-    "住所" => $city,
-);
-$param_json = json_encode($param); //JSONエンコード
 
 ?>
 
@@ -362,12 +384,15 @@ $param_json = json_encode($param); //JSONエンコード
 <script>
  var param = JSON.parse('<?php echo $param_json; ?>'); //JSONデコード
     a = param.住所
-    console.log(a);
+    console.log(param.住所);
 function initMap() {
+
   //地図を表示する領域の div 要素のオブジェクトを変数に代入
   var target = document.getElementById('gmap');  
   //HTMLに記載されている住所の取得
   var address = a; 
+  console.log(address)
+
   //ジオコーディングのインスタンスの生成
   var geocoder = new google.maps.Geocoder();  
   

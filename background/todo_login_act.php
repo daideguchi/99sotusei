@@ -56,6 +56,7 @@ if(!$val){
     $_SESSION["email"] = $val["email"];
     $_SESSION["username"] = $val["username"];
     $_SESSION["id"] = $val["id"];
+    $_SESSION["city"] = $val["city"];
 
         session_regenerate_id(true);
     $_SESSION["session_id"] = session_id();

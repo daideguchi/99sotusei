@@ -8,7 +8,15 @@ $good_total = good_total();
 $question_total = question_total();
 
 $id = $_SESSION["id"];
+$city = $_SESSION["city"];
 
+// var_dump($city);
+// exit();
+
+$param = array(
+    "住所" => $city,
+);
+$param_json = json_encode($param); //JSONエンコード
 
 //   $status = $stmt->execute();
   $good_total = $good_total->fetch();
@@ -165,10 +173,7 @@ foreach($userdata as $user):
 endforeach;
 
 
-$param = array(
-    "住所" => $city,
-);
-$param_json = json_encode($param); //JSONエンコード
+
 
 // var_dump($prof_img);
 // exit();
@@ -328,7 +333,7 @@ $param_json = json_encode($param); //JSONエンコード
 <script>
    var param = JSON.parse('<?php echo $param_json; ?>'); //JSONデコード
     a = param.住所
-    // console.log(a);
+    console.log(a);
 function initMap() {
 
   //地図を表示する領域の div 要素のオブジェクトを変数に代入
