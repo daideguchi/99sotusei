@@ -29,6 +29,8 @@ $allpostData = getAllpost();
     <!-- <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-earthly.css" type="text/css"> -->
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/headers/">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+        <link rel="icon" href="favicon.ico">
+
 
  <!-- Bootstrap core CSS -->
  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">

@@ -112,6 +112,8 @@ try {
 
 <!-- Custom styles for this template -->
 <link href="headers.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+
 
 
 	</head>
