@@ -8,9 +8,9 @@
 function connect_to_db()
 {
   //localhost
-//   $dbn = 'mysql:dbname=gsacf_d10_05;charset=utf8mb4;port=3306;host=localhost';
-//   $user = 'root';
-//   $pwd = '';
+  $dbn = 'mysql:dbname=gsacf_d10_05;charset=utf8mb4;port=3306;host=localhost';
+  $user = 'root';
+  $pwd = '';
 
   //lolipop
   // $dbn = 'mysql:dbname=LAA1351624-3m2sih;charset=utf8mb4;port=3306;host=mysql153.phy.lolipop.lan';
@@ -18,9 +18,9 @@ function connect_to_db()
   // $pwd = 'kdJayFzX';
 
 //   heroku
-  $dbn = 'mysql:dbname=heroku_216b601f26418e8;charset=utf8mb4;port=3306;host=us-cdbr-east-05.cleardb.net';
-  $user = 'b5184191d44d54';
-  $pwd = 'cd70a3e5';
+//   $dbn = 'mysql:dbname=heroku_216b601f26418e8;charset=utf8mb4;port=3306;host=us-cdbr-east-05.cleardb.net';
+//   $user = 'b5184191d44d54';
+//   $pwd = 'cd70a3e5';
   	$options = array(
 		// SQL実行失敗時にはエラーコードのみ設定
 		PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
