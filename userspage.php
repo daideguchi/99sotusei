@@ -383,14 +383,14 @@ try {
   
 <script>
  var param = JSON.parse('<?php echo $param_json; ?>'); //JSONデコード
-    a = param.住所
-    console.log(param.住所);
+    address = param.住所
+    console.log(address);
 function initMap() {
 
   //地図を表示する領域の div 要素のオブジェクトを変数に代入
   var target = document.getElementById('gmap');  
   //HTMLに記載されている住所の取得
-  var address = a; 
+  // var address = a; 
   console.log(address)
 
   //ジオコーディングのインスタンスの生成
