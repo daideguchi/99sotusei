@@ -78,42 +78,21 @@ if(!$val){
 }else{
 // var_dump($val["id"]);
 // exit();
+    $users = array(
+      'id' => "aaa",
+      'username' => "bbb",
+      'email' => "ccc",
+      'password' => "ddd",
 
-    // $_SESSION = array();
-    // $_SESSION["id"] = $val["id"];
-    // $_SESSION["username"] = $val["username"];
-    // $_SESSION["email"] = $val["email"];
-    // $_SESSION["password"] = $val["password"];
- 
-    // $users = array(
-    //   'id' => $val['id'],
-    //   'username' => $val['username'],
-    //   'email' => $val['email'],
-    //   'password' => $val['password'],
+    );
 
-    // );
+    $json = json_encode($users);
 
-
-// var_dump($users);
+//     var_dump($json);
 // exit();
+    //  json_encode($users);
 
-
-    // $users = array(
-    //     'session_id' => session_id(),
-    //     'username' => $val['username'],
-    //     'email' => $val["email"],
-    //     'password' => $val['password'],
-
-    // );
-
-
-  //       return json_encode($users);
-
-  //   header('Conetent-Type: application/json');
-  //   // echo $API ->Select();
-  //  echo $users;
-
-    echo "true";
+    echo $json;
 
 
 
