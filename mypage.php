@@ -317,6 +317,7 @@ $param_json = json_encode($param); //JSONエンコード
    
 
 <!-- 地図/////////////////////////////////////////////////////////////////////// -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhiWaH78BNWwF9BsDbPtyUzNVOhLrFjJQ&callback=initMap" async defer></script><!-- YOUR_API_KEYの部分は取得した APIキーで置き換えます -->  
 
 <p><?php echo "{$city}"?></p>
  <div id="gmap" style="height:400px;width:600px"></div> <!-- 地図を表示する領域 -->
@@ -350,7 +351,6 @@ function initMap() {
   });
 }
 </script> 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhiWaH78BNWwF9BsDbPtyUzNVOhLrFjJQ&callback=initMap" async defer></script><!-- YOUR_API_KEYの部分は取得した APIキーで置き換えます -->  
 
 
 <!-- /////////////////////////////////////////////////////////////////////// -->
