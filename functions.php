@@ -1,5 +1,63 @@
 <?php
 
+/*-------------------------------
+	データベース
+-------------------------------*/
+// DB接続関数
+
+function connect_to_db()
+{
+  //localhost
+  $dbn = 'mysql:dbname=gsacf_d10_05;charset=utf8mb4;port=3306;host=localhost';
+  $user = 'root';
+  $pwd = '';
+
+  //lolipop
+  // $dbn = 'mysql:dbname=LAA1351624-3m2sih;charset=utf8mb4;port=3306;host=mysql153.phy.lolipop.lan';
+  // $user = 'LAA1351624';
+  // $pwd = 'kdJayFzX';
+
+//   heroku
+//   $dbn = 'mysql:dbname=heroku_216b601f26418e8;charset=utf8mb4;port=3306;host=us-cdbr-east-05.cleardb.net';
+//   $user = 'b5184191d44d54';
+//   $pwd = 'cd70a3e5';
+  	$options = array(
+		// SQL実行失敗時にはエラーコードのみ設定
+		PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
+		// デフォルトフェッチモードを連想配列形式に設定
+		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+		// バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
+		// SELECTで得た結果に対してもrowCountメソッドを使えるようにする
+		PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+	);
+	// PDOオブジェクト生成（DBへ接続）
+	$dbh = new PDO($dbn, $user, $pwd, $options);
+	return $dbh;
+
+  try {
+    return new PDO($dbn, $user, $pwd);
+  } catch (PDOException $e) {
+    echo json_encode(["db error" => "{$e->getMessage()}"]);
+    exit();
+  }
+}
+
+
+
+// ログイン状態のチェック関数
+function check_session_id()
+{
+  if (!isset($_SESSION["session_id"]) ||$_SESSION["session_id"] != session_id()) {
+    header('Location:index.php');
+    exit();
+  } else {
+
+   //ログインがちゃんとされていれば一時idを更新する
+    session_regenerate_id(true);
+    $_SESSION["session_id"] = session_id();
+  }
+}
+
 
 /*-------------------------------
 	デバッグ関数
@@ -113,64 +171,6 @@ function getErrMsg($key){
 }
 
 
-/*-------------------------------
-	データベース
--------------------------------*/
-// DB接続関数
-
-function connect_to_db()
-{
-  //localhost
-  $dbn = 'mysql:dbname=gsacf_d10_05;charset=utf8mb4;port=3306;host=localhost';
-  $user = 'root';
-  $pwd = '';
-
-  //lolipop
-  // $dbn = 'mysql:dbname=LAA1351624-3m2sih;charset=utf8mb4;port=3306;host=mysql153.phy.lolipop.lan';
-  // $user = 'LAA1351624';
-  // $pwd = 'kdJayFzX';
-
-//   heroku
-//   $dbn = 'mysql:dbname=heroku_216b601f26418e8;charset=utf8mb4;port=3306;host=us-cdbr-east-05.cleardb.net';
-//   $user = 'b5184191d44d54';
-//   $pwd = 'cd70a3e5';
-  	$options = array(
-		// SQL実行失敗時にはエラーコードのみ設定
-		PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
-		// デフォルトフェッチモードを連想配列形式に設定
-		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-		// バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
-		// SELECTで得た結果に対してもrowCountメソッドを使えるようにする
-		PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-	);
-	// PDOオブジェクト生成（DBへ接続）
-	$dbh = new PDO($dbn, $user, $pwd, $options);
-	return $dbh;
-
-  try {
-    return new PDO($dbn, $user, $pwd);
-  } catch (PDOException $e) {
-    echo json_encode(["db error" => "{$e->getMessage()}"]);
-    exit();
-  }
-}
-
-
-
-// ログイン状態のチェック関数
-function check_session_id()
-{
-  if (!isset($_SESSION["session_id"]) ||$_SESSION["session_id"] != session_id()) {
-    header('Location:index.php');
-    exit();
-  } else {
-
-   //ログインがちゃんとされていれば一時idを更新する
-    session_regenerate_id(true);
-    $_SESSION["session_id"] = session_id();
-  }
-}
-
 
 // ファイルデータの保存
 // @param string $filename ファイル名
@@ -271,19 +271,19 @@ function feedback_select(){
 }
 
 
-function kanjou(){
-  $username = $_SESSION["username"];
+// function kanjou(){
+//   $username = $_SESSION["username"];
 
- $sql = "SELECT * FROM `like_table` WHERE `username`= '$username'";
+//  $sql = "SELECT * FROM `like_table` WHERE `username`= '$username'";
 
 
- $kanjoudata = connect_to_db()->query($sql);
-// var_dump($fileData);
-// exit();
+//  $kanjoudata = connect_to_db()->query($sql);
+// // var_dump($fileData);
+// // exit();
 
- return $kanjoudata;
+//  return $kanjoudata;
 
-}
+// }
 
 
 function h($s){

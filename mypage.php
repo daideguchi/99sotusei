@@ -164,12 +164,13 @@ foreach($userdata as $user):
 
 endforeach;
 
+
 $param = array(
     "住所" => $city,
 );
 $param_json = json_encode($param); //JSONエンコード
 
-// var_dump($param_json);
+// var_dump($prof_img);
 // exit();
 // var_dump($screen_img);
 // exit();
@@ -189,86 +190,135 @@ $param_json = json_encode($param); //JSONエンコード
     <!-- <link rel="stylesheet" href="assets/css/main.css" /> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-earthly.css" type="text/css"> -->
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/headers/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/features/">
+
+    <!-- Bootstrap core CSS -->
+ <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+
+
+<!-- Custom styles for this template -->
+<link href="headers.css" rel="stylesheet">
+<link href="features.css" rel="stylesheet">
 
 	</head>
 	<body class="landing is-preload">
-		<div id="page-wrapper">
 
-			<!-- Header -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    
-    <a class="navbar-brand" href="toppage.php"><img id="nav_l" src="images/IMG_5507.PNG" alt=""></a>
-    <a class="navbar-brand" href="#"><u><b>マイページ</b></u></a>
-    <a class="navbar-brand" href="search.php">探す</a>
-    <a class="navbar-brand" href="./post/post.php">書く</a>
-    <a class="navbar-brand" href="question.php">質問する</a>  
+			<!-- ヘッダー、ナビゲーションバー、選択時の色を変える -->
+      <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+          <a href="toppage.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+            <span class="fs-4"><img id="nav_l" src="images/IMG_5507.PNG" alt="アイコン" style="height:50px;">Chalk up</span>
+          </a>
 
-      <!-- <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> -->
-      <a href="./background/todo_logout.php">ログアウト</a>
-    </div>
-  </div>
-</nav>
+          <ul class="nav nav-pills">
+            <!-- <a class="navbar-brand" href="toppage.php"><img id="nav_l" src="images/IMG_5507.PNG" alt="アイコン"></a> -->
+            <li class="nav-item"><a href="mypage.php" class="nav-link" aria-current="page">マイページ</a></li>
+            <li class="nav-item"><a href="search.php" class="nav-link">探す</a></li>
+            <li class="nav-item"><a href="./post/post.php" class="nav-link">書く</a></li>
+            <li class="nav-item"><a href="question.php" class="nav-link">質問する</a></li>
+            <li class="nav-item"><a href="./background/todo_logout.php" class="nav-link">ログアウト</a></li>
+          </ul>
+        </header>
+      </div>
 
 
-    <body>
-
+    <main>
+        <!-- ユーザー情報表示 -->
+        <!-- イメージ画像 -->
         <div class="screen_img">
-            <img class="screen_img" src="./setting/<?php echo "{$screen_img}"?>" alt="">
+            <img class="screen_img" src="./setting/<?php echo "{$screen_img}"?>" alt="ヘッダー画像">
         </div>
         <br>
+
+
+        
         <div class="prof_area">
+              <!-- プロフィールイメージ画像 -->
             <div class="prof_img">
                 <img class="prof_img" src="./setting/<?php echo "{$prof_img}"?>" alt="">
             </div>
+
             <div class="prof">
 
                 <div class="container">
                     
-
-
+                    <!-- ユーザーネーム -->
                     <div class="row row-cols-auto">
-                    <div class="col"><?php echo h("{$username}") ?></div>
+                      <div class="col"><?php echo h("{$username}") ?></div>
                     </div>
+
                     <div class="w-100"></div>
                     
-                    <div class="row row-cols-auto">
+                  <div class="row row-cols-auto">
+
+                    <!-- 都道府県、市町村、所属部署 -->
                     <div>
-                    <div ><?php echo h("{$pref}") ?> | <?php echo h("$city") ?> | <?php echo h("{$user["department"]}") ?></div>
-                    <br />
-                    <div ><?php echo h("{$introduction}") ?></div>
+                        <div ><?php echo h("{$pref}") ?> | <?php echo h("$city") ?> | <?php echo h("{$user["department"]}") ?></div>
+                      <br>
+
+                      <!-- ？ -->
+                          <div ><?php echo h("{$introduction}") ?></div>
                     </div>
 
-                    </div>
+                  </div>
                 </div>
 
             </div>
-        <p>フォロー：<?php echo "{$follow_to_total["SUM((follow_to))"]}"?></p>
-        <p>フォロワー：<?php echo "{$follow_from_total["SUM((follow_from))"]}"?></p>
+
+            <!-- フォロー、フォロワー -->
+            <p style="font-size: 20px;">フォロー：<?php echo "{$follow_to_total["SUM((follow_to))"]}"?></p>
+            <p style="font-size: 20px;">フォロワー：<?php echo "{$follow_from_total["SUM((follow_from))"]}"?></p>
 
 
         </div>
-        <a href="./setting/mypage_set.php">設定</a>
+
+        <br>
+        <!-- 設定 -->
+        <a href="./setting/mypage_set.php" style="font-size: 25px;">プロフィール設定</a>
 
 
-        <p>活動記録トータルポイント：</p>
-        <p>もらったいいね数：<?php echo "{$good_total["SUM((good))"]}"?></p>
-        <p>おくったいいね数：<?php echo "{$good_to_total["COUNT(*)"]}"?></p>
+        <br>
+        <br>
 
-        <p>もらったコメント数：<?php echo "{$comment_total["SUM((comment))"]}"?></p>
-        <p>おくったコメント数：<?php echo "{$comment_to_total ["COUNT(*)"]}"?></p>
 
-        <p>質問に答えた数：<?php echo "{$answer_to_total ["COUNT(*)"]}"?></p>
-        <p>質問に答えてもらった数：<?php echo "{$answer_total ["SUM((answer))"]}"?></p>
- 
-        
+        <!-- 活動記録 手打ちで変える-->
+        <p class="point_title">活動記録トータルポイント</p>
+        <br>
+
+        <p class="point_font">もらったいいね数：<?php echo "{$good_total["SUM((good))"]}"?></p>
+
+        <p class="point_font">おくったいいね数：<?php echo "{$good_to_total["COUNT(*)"]}"?></p>
+
+        <p class="point_font">もらったコメント数：<?php echo "{$comment_total["SUM((comment))"]}"?></p>
+
+        <p class="point_font">おくったコメント数：<?php echo "{$comment_to_total ["COUNT(*)"]}"?></p>
+
+        <p class="point_font">質問に答えた数：<?php echo "{$answer_to_total ["COUNT(*)"]}"?></p>
+
+        <p class="point_font">質問に答えてもらった数：<?php echo "{$answer_total ["SUM((answer))"]}"?></p>
+   
 
 <!-- 地図/////////////////////////////////////////////////////////////////////// -->
 
-
+<p><?php echo "{$city}"?></p>
  <div id="gmap" style="height:400px;width:600px"></div> <!-- 地図を表示する領域 -->
   
 <script>
@@ -305,6 +355,8 @@ function initMap() {
 
 <!-- /////////////////////////////////////////////////////////////////////// -->
 
+
+        <!-- 自分が投稿した記事 -->
 <br><br>
         <?php foreach($postData as $post): ?>
             <div style="display: flex;"><img src=./post/<?php echo "{$post["thumbnail"]}" ?> class="img-thumbnail" style="width: 200px;" alt=""> 
@@ -321,44 +373,45 @@ function initMap() {
             <br>
         <?php endforeach ?>
         
-<!-- 
-<script src="./sample.js"></script>
-  <script src="//maps.googleapis.com/maps/api/js?key={AIzaSyBAV-z7GyTMzJOheQmN5g1T9KD3QC11ym0}&callback=initMap" async></script>
- 
-   -->
 
 
-<!-- <script>
-var MyLatLng = new google.maps.LatLng(35.6811673, 139.7670516);
-var Options = {
- zoom: 15,      //地図の縮尺値
- center: MyLatLng,    //地図の中心座標
- mapTypeId: 'roadmap'   //地図の種類
-};
-var map = new google.maps.Map(document.getElementById('map'), Options);
-</script> -->
 
-</body>
+      <br><br>
+    </main>
 
 </html>
 
 
     <style>
+
+        main{
+            display: flex;
+            /* justify-content: center;
+            text-align: center; */
+            align-items: center;
+            flex-direction: column;
+            padding-left: 350px;
+            padding-right: 350px;
+        }
+
+
         .screen_img{
+            
             height: 250px;
-            width: 100%;
+            width: 600px;
             background-color: #dcdcdc;
             background:url(./setting/images/screen_img_defult.png);            
             background-position: center;
             background-size: cover;
             border: solid;
+          
             text-align: center;
             object-fit: cover; 
         }
 
       .prof_img {
-        width: 200px;
-        height: 200px;
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
         border: 1px solid #000000;
         background:url(./setting/images/prof_defult.jpeg);   
@@ -368,6 +421,13 @@ var map = new google.maps.Map(document.getElementById('map'), Options);
 
       .prof_area{
           display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .prof{
+        font-weight: bold;
+        font-size:25px
       }
 
         #output li {
@@ -402,6 +462,15 @@ var map = new google.maps.Map(document.getElementById('map'), Options);
             width: 30%;
         }
 
+        .point_title{
+          font-size: 30px;
+          font-weight: bold;
+        }
+
+        .point_font{
+          font-size: 20px;
+        }
+
 
         #sample {
             width: 700px;
@@ -411,7 +480,7 @@ var map = new google.maps.Map(document.getElementById('map'), Options);
 
         html { height: 100% }
         body { height: 100% }
-        #map { height: 300px; width: 300px}
+        #map { height: 100%; width: 100%}
 
         #nav_l{
             height:50px;

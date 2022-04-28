@@ -2,7 +2,7 @@
 // データ受け取り
 // var_dump($_POST);
 // exit();
-session_start();
+// session_start();
 
 
 // DB接続
@@ -10,36 +10,33 @@ session_start();
 // exit();
 
 include("../functions.php");
-$username = $_POST["username"];
-$password = $_POST["password"];
 // require_once __DIR__ . '/config.php';
 
 $pdo = connect_to_db(); //接続に成功したらpdpにデータが入る
 
 
-        // $users = array();
-        // $data = $pdo->prepare('SELECT * FROM users_table ORDER BY id');
-        // $data->execute();
-        // while($OutputData = $data->fetch(PDO::FETCH_ASSOC)){
-        //     $users = array(
-        //          'id' => $OutputData['id'],
-        //          'username' => $OutputData['username'],
-        //          'email' => $OutputData['email'],
-        //          'password' => $OutputData['password'],
+        $users = array();
+        $data = $pdo->prepare('SELECT * FROM users_table ORDER BY id');
+        $data->execute();
+        while($OutputData = $data->fetch(PDO::FETCH_ASSOC)){
+            $users = array(
+                 'id' => $OutputData['id'],
+                 'username' => $OutputData['username'],
+                 'email' => $OutputData['email'],
+                 'password' => $OutputData['password'],
 
-        //     );
-        // }
+            );
+        }
 
         // var_dump($users);
         // exit();
 
-        // return json_encode($users);
-
-
+        return json_encode($users);
 
 
 // $email = $_POST["email"];
-
+$username = $_POST["username"];
+$password = $_POST["password"];
 
 // var_dump($username);
 // var_dump($password);
@@ -76,27 +73,13 @@ if(!$val){
     echo"false";
     exit();
 }else{
-// var_dump($val["id"]);
-// exit();
-
-    // $_SESSION = array();
-    // $_SESSION["id"] = $val["id"];
-    // $_SESSION["username"] = $val["username"];
+    // $users = array();
+    // $_SESSION["session_id"] = session_id();
+    // $_SESSION["is_admin"] = $val["is_admin"];
     // $_SESSION["email"] = $val["email"];
-    // $_SESSION["password"] = $val["password"];
+    // $_SESSION["username"] = $val["username"];
+    // $_SESSION["id"] = $val["id"];
  
-    // $users = array(
-    //   'id' => $val['id'],
-    //   'username' => $val['username'],
-    //   'email' => $val['email'],
-    //   'password' => $val['password'],
-
-    // );
-
-
-// var_dump($users);
-// exit();
-
 
     // $users = array(
     //     'session_id' => session_id(),
@@ -105,22 +88,23 @@ if(!$val){
     //     'password' => $val['password'],
 
     // );
+    
 
 
-  //       return json_encode($users);
-
-  //   header('Conetent-Type: application/json');
-  //   // echo $API ->Select();
-  //  echo $users;
 
     echo "true";
 
 
 
+    // var_dump($users);
+
+    return json_encode($users);
+    // echo $users;
 
     // exit();
 }
 
-
-
+$API = new API;
+header('Conetent-Type: application/json');
+echo $API ->Select();
 

@@ -26,69 +26,107 @@ check_session_id();
         $("#input").cleditor();
       });
     </script> -->
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/headers/">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a href="#"><u><b>書く</b></u></a>
-    <a href="../toppage.php">トップページ</a>
-    <a href="../mypage.php">マイページ</a>
-    <a href="../search.php">探す</a>
+     <!-- Bootstrap core CSS -->
+ <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-      <!-- <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> -->
-      <a href="../background/todo_logout.php">ログアウト</a>
-    </div>
-  </div>
-</nav>
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
 
-    <body>
-        <div id="top">
-        <h1><u>記事投稿</u></h1>
-        </div>
-        <p>成果事例や取組事例を記入する</p>
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+</style>
 
 
-        <form action="post.check.php" method="POST" enctype="multipart/form-data">
+<!-- Custom styles for this template -->
+<link href="headers.css" rel="stylesheet">
 
-            <div>タイトル: <input type="text" name="title" style="
-                width: 622px;
-                padding-left: 10px;
-                padding-right: 10px;
-            "></div>
-            <br />
+</head>
 
-            <div>本文: </div>
-            <textarea id="input" name="text"></textarea>
-            <!-- <p>※現在、リッチテキストだとDB保存できない</p> -->
-            <br />
+<body class="landing is-preload">
+		
+         <!-- ヘッダー、ナビゲーションバー、選択時の色を変える -->
+      <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+          <a href="toppage.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+            <span class="fs-4"><img id="nav_l" src="../images/IMG_5507.PNG" alt="アイコン" style="height:50px;">Chalk up</span>
+          </a>
 
-            <div>サムネイル画像: </div>
-            <input name="thumbnail" id="uploader" type="file" accept="image/*">
-            <div id="showPic"></div>
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="./mypage.php" class="nav-link" aria-current="page">マイページ</a></li>
+            <li class="nav-item"><a href="./search.php" class="nav-link">探す</a></li>
+            <li class="nav-item"><a href="./post/post.php" class="nav-link">書く</a></li>
+            <li class="nav-item"><a href="../question.php" class="nav-link">質問する</a></li>
+            <li class="nav-item"><a href="./background/todo_logout.php" class="nav-link">ログアウト</a></li>
+          </ul>
+        </header>
+      </div>
+    
 
-            <div>
-                <button>確認画面へ</button>
-            </div>
+                <!-- ページ説明 -->
+        
+                <div id="top">
+                <h1 style="font-size: 30px;">記事投稿</h1>
+                </div>
+                <p>成果事例や取組事例を記入する</p>
 
-            <input type="hidden" name="max" value="1048576" />
-         </form>
+
+                <!-- 投稿フォーム -->
+                <form action="post.check.php" method="POST" enctype="multipart/form-data">
+
+                    <div>タイトル: <input type="text" name="title" style="
+                        width: 622px;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                    "></div>
+                    <br />
+
+                    <div>本文: </div>
+                    <textarea id="input" name="text"></textarea>
+                    <!-- <p>※現在、リッチテキストだとDB保存できない</p> -->
+                    <br />
 
 
-        <script>
-            $("#uploader").change(function (evt) {
-            let file = evt.target.files;
-            let reader = new FileReader();
-            let dataUrl = "";
-            reader.readAsDataURL(file[0]);
-            reader.onload = function () {
-                dataUrl = reader.result;
-                $("#showPic").html("<img src='" + dataUrl + "'>");
-            };
-            });
-        </script>
+                    <div>サムネイル画像: </div>
+                    <input name="thumbnail" id="uploader" type="file" accept="image/*">
+                    <div id="showPic"></div>
 
+                    <br>
+                    <div>
+                        <button style="background-color: #9FD9F6;">確認画面へ</button>
+                    </div>
+
+                    <br>
+                    <br>
+                    <input type="hidden" name="max" value="1048576" />
+                </form>
+
+
+                <script>
+                    $("#uploader").change(function (evt) {
+                    let file = evt.target.files;
+                    let reader = new FileReader();
+                    let dataUrl = "";
+                    reader.readAsDataURL(file[0]);
+                    reader.onload = function () {
+                        dataUrl = reader.result;
+                        $("#showPic").html("<img src='" + dataUrl + "'>");
+                    };
+                    });
+                </script>
+
+        <br><br>
     </body>
 
 </html>

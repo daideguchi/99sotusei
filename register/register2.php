@@ -135,6 +135,7 @@ if ($stmt->fetchColumn() > 0) {
 
             <div class="control">
                 <button type="submit" class="btn">登録</button>
+                <p>あとで変更できません。。</p>
             </div>
         </form>
         <a href="register1.php">戻る</a>
