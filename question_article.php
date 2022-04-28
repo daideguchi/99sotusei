@@ -51,7 +51,8 @@ foreach($stmt as $article):
     $ok = $article['ok'];
  endforeach;
 
-
+var_dump($ok);
+exit();
 
 //回答を表示するための準備
 $sql_answer = "SELECT * FROM answer_table WHERE ques_id=$ques_id";
