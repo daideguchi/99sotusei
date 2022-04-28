@@ -79,7 +79,7 @@ if(!$val){
 // var_dump($val["id"]);
 // exit();
     $users = array(
-      'id' => "54",
+      'id' => 54,
       'username' => "demo",
       'email' => "demo@demo",
       'password' => "demo",
