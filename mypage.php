@@ -164,8 +164,12 @@ foreach($userdata as $user):
 
 endforeach;
 
+$param = array(
+    "住所" => $city,
+);
+$param_json = json_encode($param); //JSONエンコード
 
-// var_dump($prof_img);
+// var_dump($param_json);
 // exit();
 // var_dump($screen_img);
 // exit();
@@ -259,11 +263,47 @@ endforeach;
 
         <p>質問に答えた数：<?php echo "{$answer_to_total ["COUNT(*)"]}"?></p>
         <p>質問に答えてもらった数：<?php echo "{$answer_total ["SUM((answer))"]}"?></p>
-   
+ 
+        
 
-        <div id="sample"></div>
+<!-- 地図/////////////////////////////////////////////////////////////////////// -->
 
 
+ <div id="gmap" style="height:400px;width:600px"></div> <!-- 地図を表示する領域 -->
+  
+<script>
+ var param = JSON.parse('<?php echo $param_json; ?>'); //JSONデコード
+    a = param.住所
+    console.log(a);
+function initMap() {
+  //地図を表示する領域の div 要素のオブジェクトを変数に代入
+  var target = document.getElementById('gmap');  
+  //HTMLに記載されている住所の取得
+  var address = a; 
+  //ジオコーディングのインスタンスの生成
+  var geocoder = new google.maps.Geocoder();  
+  
+  //geocoder.geocode() にアドレスを渡して、コールバック関数を記述して処理
+  geocoder.geocode({ address: address }, function(results, status){
+  //ステータスが OK で results[0] が存在すれば、地図を生成
+     if (status === 'OK' && results[0]){  
+        new google.maps.Map(target, {
+        //results[0].geometry.location に緯度・経度のオブジェクトが入っている
+          center: results[0].geometry.location,
+          zoom: 14
+        });
+     }else{ 
+     //ステータスが OK 以外の場合や results[0] が存在しなければ、アラートを表示して処理を中断
+       alert('失敗しました。理由: ' + status);
+       return;
+     }
+  });
+}
+</script> 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhiWaH78BNWwF9BsDbPtyUzNVOhLrFjJQ&callback=initMap" async defer></script><!-- YOUR_API_KEYの部分は取得した APIキーで置き換えます -->  
+
+
+<!-- /////////////////////////////////////////////////////////////////////// -->
 
 <br><br>
         <?php foreach($postData as $post): ?>
@@ -286,13 +326,9 @@ endforeach;
   <script src="//maps.googleapis.com/maps/api/js?key={AIzaSyBAV-z7GyTMzJOheQmN5g1T9KD3QC11ym0}&callback=initMap" async></script>
  
    -->
-<script src="http://maps.google.com/maps/api/js?key={AIzaSyBAV-z7GyTMzJOheQmN5g1T9KD3QC11ym0}&language=ja"></script>
 
 
-
-<div id="map"></div>
-
-<script>
+<!-- <script>
 var MyLatLng = new google.maps.LatLng(35.6811673, 139.7670516);
 var Options = {
  zoom: 15,      //地図の縮尺値
@@ -300,7 +336,7 @@ var Options = {
  mapTypeId: 'roadmap'   //地図の種類
 };
 var map = new google.maps.Map(document.getElementById('map'), Options);
-</script>
+</script> -->
 
 </body>
 
@@ -375,7 +411,7 @@ var map = new google.maps.Map(document.getElementById('map'), Options);
 
         html { height: 100% }
         body { height: 100% }
-        #map { height: 100%; width: 100%}
+        #map { height: 300px; width: 300px}
 
         #nav_l{
             height:50px;
