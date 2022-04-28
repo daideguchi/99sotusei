@@ -53,8 +53,8 @@ function check_session_id()
   } else {
 
    //ログインがちゃんとされていれば一時idを更新する
-    session_regenerate_id(true);
-    $_SESSION["session_id"] = session_id();
+    // session_regenerate_id(true);
+    // $_SESSION["session_id"] = session_id();
   }
 }
 

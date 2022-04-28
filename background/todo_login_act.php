@@ -57,6 +57,9 @@ if(!$val){
     $_SESSION["username"] = $val["username"];
     $_SESSION["id"] = $val["id"];
 
+        session_regenerate_id(true);
+    $_SESSION["session_id"] = session_id();
+
     header("Location: ../toppage.php");
     exit();
 }
