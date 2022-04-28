@@ -334,6 +334,7 @@ function initMap() {
   var target = document.getElementById('gmap');  
   //HTMLに記載されている住所の取得
   var address = a; 
+  console.log(a)
   //ジオコーディングのインスタンスの生成
   var geocoder = new google.maps.Geocoder();  
   
