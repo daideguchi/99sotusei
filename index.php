@@ -71,7 +71,9 @@
                   <br>
                 
 
-                  <p class="col-lg-10 fs-4">自治体で働く人のためのナレッジ共有SNS</p>
+                  <p class="col-lg-10 fs-4">自治体で働く人のための</p>
+                  <p class="col-lg-10 fs-4">ナレッジ共有SNS</p>
+<br>
                   <p class="col-lg-10 fs-4">その知識と経験、活用しませんか？</p>
               </div>
 
