@@ -337,7 +337,9 @@ endforeach;
     address = param.住所
     console.log(address);
 function initMap() {
-
+   var param = JSON.parse('<?php echo $param_json; ?>'); //JSONデコード
+    address = param.住所
+    console.log(address);
   //地図を表示する領域の div 要素のオブジェクトを変数に代入
   var target = document.getElementById('gmap');  
   //HTMLに記載されている住所の取得
