@@ -32,7 +32,7 @@ ON users_table.id = posts_table.user_id');
                  'text' => $OutputData['text'],                 
                  'thumbnail' => $OutputData['thumbnail'], 
                  'prof_img' => $OutputData['prof_img'],   
-                 'created_at' => $OutputData['created_at'],  
+                //  'created_at' => $OutputData['created_at'],  
                  'good' => $OutputData['good'],   
                  'comment' => $OutputData['comment']                          
             );
