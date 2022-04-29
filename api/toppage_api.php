@@ -24,17 +24,17 @@ ON users_table.id = posts_table.user_id');
         while($OutputData = $data->fetch(PDO::FETCH_ASSOC)){
             $users = array(
                  'user_id' => $OutputData['id'],
-                 'username' => $OutputData['username'],
-                 'pref' => $OutputData['pref'],                 
-                 'city' => $OutputData['city'],                 
-                 'department' => $OutputData['department'],   
-                 'title' => $OutputData['title'],                 
-                 'text' => $OutputData['text'],                 
-                 'thumbnail' => $OutputData['thumbnail'], 
-                 'prof_img' => $OutputData['prof_img'],   
+                //  'username' => $OutputData['username'],
+                //  'pref' => $OutputData['pref'],                 
+                //  'city' => $OutputData['city'],                 
+                //  'department' => $OutputData['department'],   
+                //  'title' => $OutputData['title'],                 
+                //  'text' => $OutputData['text'],                 
+                //  'thumbnail' => $OutputData['thumbnail'], 
+                //  'prof_img' => $OutputData['prof_img'],   
                 //  'created_at' => $OutputData['created_at'],  
-                 'good' => $OutputData['good'],   
-                 'comment' => $OutputData['comment']                          
+                //  'good' => $OutputData['good'],   
+                //  'comment' => $OutputData['comment']                          
             );
         }
         return json_encode($users);
