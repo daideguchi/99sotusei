@@ -86,6 +86,15 @@ if(!$val){
 
     );
 
+     $_SESSION = array();
+    $_SESSION["session_id"] = session_id();
+    $_SESSION["is_admin"] = $val["is_admin"];
+    $_SESSION["email"] = $val["email"];
+    $_SESSION["username"] = $val["username"];
+    $_SESSION["id"] = $val["id"];
+    $_SESSION["city"] = $val["city"];
+
+
     $json = json_encode($users);
 
 //     var_dump($json);
