@@ -329,7 +329,7 @@ endforeach;
 <br>
 <p>【<?php echo "{$city}"?>】</p>
 <div style="border:#000000">
- <div id="gmap" style="height:400px;width:600px"></div> <!-- 地図を表示する領域 -->
+ <div id="gmap" style="height:400px;width:600px; border: solid;"></div> <!-- 地図を表示する領域 -->
 </div>
 
 <script>

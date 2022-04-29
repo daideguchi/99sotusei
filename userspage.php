@@ -379,10 +379,10 @@ try {
 <!-- 地図/////////////////////////////////////////////////////////////////////// -->
 <br>
 <p>【<?php echo "{$city}"?>】</p>
-<div style="border:#000000">
- <div id="gmap" style="height:400px;width:600px"></div> <!-- 地図を表示する領域 -->
- </div> 
- 
+
+ <div id="gmap" style="height:400px;width:600px; border: solid;"></div> <!-- 地図を表示する領域 -->
+
+
 <script>
  var param = JSON.parse('<?php echo $param_json; ?>'); //JSONデコード
     address = param.住所
