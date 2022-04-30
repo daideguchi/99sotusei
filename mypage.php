@@ -309,7 +309,7 @@ endforeach;
 
 
         <!-- 活動記録 手打ちで変える-->
-        <p class="point_title">活動記録トータルポイント</p>
+        <p class="point_title">活動ポイント</p>
         <br>
 
         <p class="point_font">もらったいいね数：<?php echo "{$good_total["SUM((good))"]}"?></p>
