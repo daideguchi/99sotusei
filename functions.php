@@ -48,7 +48,7 @@ function connect_to_db()
 function check_session_id()
 {
   if (!isset($_SESSION["session_id"]) ||$_SESSION["session_id"] != session_id()) {
-    header('Location:index.php');
+    header('Location:../index.php');
     exit();
   } else {
 
