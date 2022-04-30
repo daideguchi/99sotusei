@@ -4,18 +4,8 @@ include("functions.php");
 check_session_id();
 
 $question_all = question_all();
-// $comment_count = comment_count();
-// $count = $comment_count->fetchColumn();
-// $question_all = $pdo->prepare($question_all);
-// var_dump($question_all);
-// exit;
 
-
-
-// var_dump($allpostData);
-// exit();
-// var_dump($comment_count);
-// exit();
+$id = $_SESSION["id"];
 $username = $_SESSION["username"];
 $ques_id = $_GET["id"];
 
@@ -45,6 +35,7 @@ foreach($stmt as $article):
 // //   var_dump($article);
 // exit();
     $ques_title = $article['ques_title'];
+    $ques_user_id = $article['user_id'];
     $question = $article['question'];
     $quesuser = $article['username'];
     $quesuser_id = $article['id'];
@@ -55,6 +46,10 @@ foreach($stmt as $article):
  endforeach;
 
 // var_dump($ok);
+// exit();
+// var_dump($id);
+
+// var_dump($ques_user_id);
 // exit();
 
 //回答を表示するための準備
@@ -146,15 +141,15 @@ try {
     <main>
             <!-- 質問ゾーン -->
             <?php if ($ok != 0) {?>
-                <p>解決ずみ</p>
+                <p style="color: green;">解決ずみ</p>
                 <?php
             } else {?>
-                <p>未解決</p>
+                <p style="color: red;">未解決</p>
                 <?php }?>
 
                 <!-- 質問の詳細 -->
         <?php 
-        if ($user_id === $_SESSION["id"]) {?>
+        if ($id === $ques_user_id) {?>
             <?php if ($ok != 0) {?>
                 <a href="./background/answer_act.php?id=<?php echo "{$ques_id}" ?>">未解決にする</a>
 
