@@ -56,17 +56,17 @@ check_session_id();
          <!-- ヘッダー、ナビゲーションバー、選択時の色を変える -->
       <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-          <a href="toppage.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+          <a href="../toppage.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
             <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
             <span class="fs-4"><img id="nav_l" src="images/IMG_5507.PNG" alt="アイコン" style="height:50px;">Chalk up</span>
           </a>
 
           <ul class="nav nav-pills">
-            <li class="nav-item"><a href="./mypage.php" class="nav-link" aria-current="page">マイページ</a></li>
-            <li class="nav-item"><a href="./search.php" class="nav-link">探す</a></li>
-            <li class="nav-item"><a href="./post/post.php" class="nav-link">書く</a></li>
-            <li class="nav-item"><a href="question.php" class="nav-link">質問する</a></li>
-            <li class="nav-item"><a href="./background/todo_logout.php" class="nav-link">ログアウト</a></li>
+            <li class="nav-item"><a href="../mypage.php" class="nav-link" aria-current="page">マイページ</a></li>
+            <li class="nav-item"><a href="../search.php" class="nav-link">探す</a></li>
+            <li class="nav-item"><a href="../post/post.php" class="nav-link">書く</a></li>
+            <li class="nav-item"><a href="../question.php" class="nav-link">質問する</a></li>
+            <li class="nav-item"><a href="../background/todo_logout.php" class="nav-link">ログアウト</a></li>
           </ul>
         </header>
       </div>
