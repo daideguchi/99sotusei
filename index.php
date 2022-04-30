@@ -65,6 +65,7 @@
           <!-- タイトル -->
         <div class="container col-xl-10 col-xxl-8 px-4 py-5">
             <div class="row align-items-center g-lg-5 py-5">
+
               <div class="col-lg-7 text-center text-lg-start">
                   <h1 class="display-4 fw-bold lh-1 mb-3"><img id="nav_l" src="images/IMG_5507.PNG" alt="アイコン" style="height:80px;">Chalk up</h1>
                   <p class="col-lg-10 fs-4">- チョークアップ -</p>
@@ -84,7 +85,7 @@
 
                     <!-- ユーザーネームテキストフィールド -->
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="username">
+                      <input type="text" class="form-control" id="floatingInput" placeholder="ユーザーネーム" name="username">
                       <label for="floatingInput">ユーザーネーム</label>
                     </div>
 
@@ -102,7 +103,7 @@
                     </div> -->
 
                     <!-- ログインボタン 色を＃9FD9F6に変える-->
-                    <button class="w-100 btn btn-lg btn-primary" type="submit" style="background-color: ＃9FD9F6;">ログイン</button>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">ログイン</button>
                     <hr class="my-4">
 
                     <!-- 新規会員登録へ遷移 色を黒に変える-->
