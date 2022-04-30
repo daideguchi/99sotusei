@@ -87,7 +87,7 @@ $allpostData = getAllpost();
             <section class="text-center container">
             <!-- <div class="row py-lg-5"> -->
               <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Chalk up</h1>
+                <!-- <h1 class="fw-light">Chalk up</h1> -->
                 <p class="lead text-muted">自治体で働く人のためのナレッジ共有SNS</p>
                 <br>
                 <span class="image featured"><img id="top_img" src="images/IMG_5514.JPG" alt="" /></span>
