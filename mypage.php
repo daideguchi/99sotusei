@@ -293,8 +293,8 @@ endforeach;
             </div>
 
             <!-- フォロー、フォロワー -->
-            <p style="font-size: 20px;">フォロー：<?php echo "{$follow_to_total["SUM((follow_to))"]}"?></p>
-            <p style="font-size: 20px;">フォロワー：<?php echo "{$follow_from_total["SUM((follow_from))"]}"?></p>
+            <p style="font-size: 10px;">フォロー：<?php echo "{$follow_to_total["SUM((follow_to))"]}"?></p><br>
+            <p style="font-size: 10px;">フォロワー：<?php echo "{$follow_from_total["SUM((follow_from))"]}"?></p>
 
 
         </div>

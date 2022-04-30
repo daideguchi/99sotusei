@@ -347,8 +347,8 @@ try {
             </div>
 
 
-        <p>フォロー：<?php echo "{$follow_to_total["SUM((follow_to))"]}"?></p>
-        <p>フォロワー：<?php echo "{$follow_from_total["SUM((follow_from))"]}"?></p>
+        <p style="font-size: 10px;">フォロー：<?php echo "{$follow_to_total["SUM((follow_to))"]}"?></p>
+        <p style="font-size: 10px;">フォロワー：<?php echo "{$follow_from_total["SUM((follow_from))"]}"?></p>
 
 
         </div>
