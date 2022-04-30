@@ -65,7 +65,7 @@ $allpostData = getAllpost();
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
           <a href="toppage.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
             <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-            <span class="fs-4"><img id="nav_l" src="images/IMG_5514.PNG" alt="アイコン">Chalk up</span>
+            <span class="fs-4"><img id="nav_l" src="images/IMG_5507.PNG" alt="アイコン">Chalk up</span>
           </a>
 
           <ul class="nav nav-pills">
@@ -90,7 +90,7 @@ $allpostData = getAllpost();
                 <h1 class="fw-light">Chalk up</h1>
                 <p class="lead text-muted">自治体で働く人のためのナレッジ共有SNS</p>
                 <br>
-                <span class="image featured"><img id="top_img" src="images/IMG_5509.JPG" alt="" /></span>
+                <span class="image featured"><img id="top_img" src="images/IMG_5514.JPG" alt="" /></span>
 
                   <!-- <a href="#" class="btn btn-primary my-2">Main call to action</a>
                   <a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
