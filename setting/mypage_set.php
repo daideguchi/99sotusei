@@ -52,11 +52,11 @@ check_session_id();
           </a>
 
           <ul class="nav nav-pills">
-            <li class="nav-item"><a href="./mypage.php" class="nav-link" aria-current="page">マイページ</a></li>
-            <li class="nav-item"><a href="./search.php" class="nav-link">探す</a></li>
-            <li class="nav-item"><a href="./post/post.php" class="nav-link">書く</a></li>
-            <li class="nav-item"><a href="question.php" class="nav-link">質問する</a></li>
-            <li class="nav-item"><a href="./background/todo_logout.php" class="nav-link">ログアウト</a></li>
+            <li class="nav-item"><a href="../mypage.php" class="nav-link" aria-current="page">マイページ</a></li>
+            <li class="nav-item"><a href="../search.php" class="nav-link">探す</a></li>
+            <li class="nav-item"><a href="../post/post.php" class="nav-link">書く</a></li>
+            <li class="nav-item"><a href="../question.php" class="nav-link">質問する</a></li>
+            <li class="nav-item"><a href="../background/todo_logout.php" class="nav-link">ログアウト</a></li>
           </ul>
         </header>
       </div>
