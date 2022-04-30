@@ -1,0 +1,42 @@
+PODS:
+  - Alamofire (5.5.0)
+  - Nuke (10.7.1)
+  - PromiseKit (6.17.0):
+    - PromiseKit/CorePromise (= 6.17.0)
+    - PromiseKit/Foundation (= 6.17.0)
+    - PromiseKit/UIKit (= 6.17.0)
+  - PromiseKit/CorePromise (6.17.0)
+  - PromiseKit/Foundation (6.17.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.17.0):
+    - PromiseKit/CorePromise
+  - SDWebImage (5.12.5):
+    - SDWebImage/Core (= 5.12.5)
+  - SDWebImage/Core (5.12.5)
+  - SwiftyJSON (5.0.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - Nuke
+  - PromiseKit
+  - SDWebImage (~> 5.0)
+  - SwiftyJSON
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Nuke
+    - PromiseKit
+    - SDWebImage
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  Nuke: 279f17a599fd1c83cf51de5e0e1f2db143a287b0
+  PromiseKit: 996202d4cae72b7801b312abef4cd2f995b2978a
+  SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+
+PODFILE CHECKSUM: bfb3d7e2e9750704645b28663e6cb76cce9ffe15
+
+COCOAPODS: 1.11.3
