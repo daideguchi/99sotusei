@@ -4,7 +4,7 @@ include("../functions.php");
 // var_dump($_POST);
 // exit();
 
-$user_id = $_POST["user_id"];
+$user_id = $_POST["id"];
 $ques_id = $_POST["ques_id"];
 $username = $_POST["username"];
 $answer = $_POST["answer"];
