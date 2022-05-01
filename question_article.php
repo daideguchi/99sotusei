@@ -200,7 +200,7 @@ try {
             <textarea name="answer" cols="80" rows="5"></textarea>
             <br>
             <input type="hidden" name="ques_id" value="<?php echo "{$ques_id}" ?>">
-            <input type="hidden" name="user_id" value="<?php echo "{$user_id}" ?>">
+            <input type="hidden" name="user_id" value="<?php echo "{$id}" ?>">
             <input type="hidden" name="username" value="<?php echo "{$username}" ?>">
 
             <!-- 送信ボタン -->
