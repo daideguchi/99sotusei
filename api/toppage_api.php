@@ -21,8 +21,11 @@ class API {
         $data = $db->prepare('SELECT * FROM `users_table` JOIN `posts_table` 
 ON users_table.id = posts_table.user_id');
         $data->execute();
+
         while($OutputData = $data->fetch(PDO::FETCH_ASSOC)){
+
             $users = array(
+            // $users[$OutputData['id']] = array(
                  'user_id' => $OutputData['id'],
                  'username' => $OutputData['username'],
                  'pref' => $OutputData['pref'],                 
